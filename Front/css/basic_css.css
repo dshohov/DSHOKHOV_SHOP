@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 1200px;
+    margin: 0 auto;
+}
+/* Start style header basic */
+header a{
+    color: #000;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+
+    height: 64px;
+}
+.underline-one {
+    position: relative;
+    cursor: pointer;
+    text-decoration: none; /* Убираем подчеркивание */
+}
+.underline-one:after {
+	content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px; /* Высота линии */
+    background-color: black; /* Цвет подчеркивания при исчезании линии*/
+    transition: width 0.5s; /* Время эффекта */
+}
+
+.underline-one:hover:after {
+	content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px; /* Высота линии */
+    background-color: #000; /* Цвет подчеркивания при появлении линии*/
+    transition: width 0.5s;  /* Время эффекта */
+}
+header::after{
+    display: block;
+    clear: both;
+    content: '';
+}
+header h1{
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    color: #989898;
+    
+    
+}
+header li {
+    display: inline-block;
+    margin-left: 34px;
+}
+.nav_left{
+    display: inline-block;
+    position: absolute;
+    margin-top: 25px;
+}
+.nav_logo{
+    display: inline-block;
+    margin-left: 453px;
+    margin-top: 21px;
+    position: absolute;
+}
+.nav_right{
+    display: inline-block;
+    position: absolute;
+    margin-left: 964px;
+    margin-top: 25px;
+}
+.my_nav{
+    position: relative;
+    height: 64px;
+}
+
+
+#blockImg1{display:none;position:absolute;margin: 50px 0 0 1152px;}
+#click_img1,.click_img1{cursor:pointer;}
+
+/* End basik header */
+
+/* basik footer*/
+
+.my_footer{
+    width: 1200px;
+    height: 41px;
+    border-top: #000 1px solid;
+    color: #ADAFB2;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+}
+.my_footer li {
+    display: inline-block;
+    margin-right: 11px;
+    margin-top: 14px;
+}
