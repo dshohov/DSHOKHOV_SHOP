@@ -97,6 +97,145 @@ header li {
 /* End basik header */
 
 /* Basik context */
+.context{
+    background-color: #fff;
+}
+.sales{
+    width: 1002px;
+    height: 418px;
+
+    background: linear-gradient(270deg, #CCFF00 0%, #FE3B5B 100%);
+    border-radius: 10px;
+    margin: 41px 99px 41px 99px;
+    position: relative;
+}
+.sales li {
+    display: inline-block;
+}
+.li_first_sales{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 26px;
+    /* or 65% */
+
+    text-align: center;
+    letter-spacing: 0.3px;
+
+    color: #FFFFFF;
+
+    width: 500px;
+    margin: 121px 250px 0 250px;
+}
+.li_second_sales{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    /* or 130% */
+
+    text-align: center;
+    letter-spacing: 0.3px;
+
+    color: #FFFFFF;
+
+    width: 253px;
+    margin: 39px 375px 0px 375px;
+}
+.li_third_sales{
+    width: 247px;
+    height: 30px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    /* or 125% */
+
+    padding-top: 8px;
+}
+.li_third_sales_a{
+    text-align: center;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    color: #000;
+
+}
+.li_third_sales_div{
+    margin: 39px 378px 0 378px;
+}
+.categories{
+    border-spacing: 2px;
+}
+.categories td{
+    width: 399px;
+    height: 517px;
+}
+.category_new{
+    width: 799px;
+    height: 179px;
+    padding-top: 338px;
+}
+.category_new:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+.category_new h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    /* identical to box height, or 120% */
+
+
+    color: #FFFFFF;
+
+
+    margin-bottom: 17px;
+    margin-left: 56px;
+}
+.category{
+    width: 399px;
+    height: 179px;
+    padding-top: 338px;
+}
+.category:hover {
+    background-color: rgba(0,0,0,0.2);
+    
+}
+.categories a {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* or 154% */
+
+    letter-spacing: 0.3px;
+
+    color: #FFFFFF;
+    margin-left: 56px;
+}
+.category h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 48px;
+    /* or 126% */
+
+
+    color: #FFFFFF;
+    margin-left: 56px;
+}
+/*End basik context*/
+
+
 
 /* basik footer*/
 

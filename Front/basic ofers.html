@@ -1,17 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - shokhov_shop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
-    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOKHOV_SHOP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/basic_css.css" asp-append-version="true">
-    <script src="~/js/basik.js"></script>
+    <link rel="stylesheet" href="css/ofers_css.css">
+    <script src="js/basik.js"></script>
+    
 </head>
 <body>
     <div class="wrapper" >
@@ -37,13 +36,13 @@
                 <div>
 
 
-                    <img src="img/languadge.png" alt="ava_hand_no_foto.png" id="click_img1" style="position: absolute; margin: 30px 0 0 1186px;">
+                    <img src="img/languadge.png" alt="ava_hand_no_foto.png" id="click_img1" style="position: absolute; margin: 25px 0 0 1152px;">
 
                     <div id="blockImg1">
 
-                    <div><a href="#"><img class="click_img1" id="src" src="~/img/languadge.png" ></a></div>
+                    <div><a href="#"><img class="click_img1" id="src" src="img/languadge.png" ></a></div>
 
-                    <div><a href="#"><img class="click_img1" id="src1" src="~/img/uk.png"></a></div>
+                    <div><a href="#"><img class="click_img1" id="src1" src="img/uk.png"></a></div>
 
                     </div>
 
@@ -52,10 +51,21 @@
             </div>
             
         </header>
-
         <main>
+            <!--Offers example-->
             <div class="context">
-                @RenderBody()
+                <div class="ofers_nav">
+                    <h1>Жіночі сумки</h1>
+                    <ul>
+                        <li>Усі</li>
+                        <li>Кожані сумки</li>
+                        <li>Шопери</li>
+                        <li>Сумка на плече</li>
+                        <li>Маленькі</li>
+                        <li>Рюкзаки</li>
+                        <li>Вечірні</li>
+                    </ul>
+                </div>
             </div>
         </main>
         <footer>
@@ -67,10 +77,6 @@
                 </ul>
             </div>
         </footer>
-
     </div>
-
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
