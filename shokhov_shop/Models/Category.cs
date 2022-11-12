@@ -6,9 +6,9 @@ namespace shokhov_shop.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Name_For_User { get; set; }
         public string Description { get; set; }
         public People People { get; set; }
-        public List<Product> Products { get; set; }
-        public List<Sub_Catedory> SubCatedories { get; set; }
+        public string Image { get; set; }
     }
 }
