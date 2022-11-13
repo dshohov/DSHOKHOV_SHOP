@@ -1,13 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using shokhov_shop.Data;
+using shokhov_shop.Helpers;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Repository;
+using shokhov_shop.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
