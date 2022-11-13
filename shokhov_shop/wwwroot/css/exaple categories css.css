@@ -60,7 +60,7 @@
     line-height: 20px;
     /* or 125% */
 
-    padding-top: 8px;
+    padding-top: 6px;
 }
 .li_third_sales_a{
     text-align: center;
@@ -81,7 +81,7 @@
 }
 .category_new{
     width: 799px;
-    height: 179px;
+    height: 517px;
     padding-top: 338px;
 }
 .category_new:hover {
@@ -104,7 +104,7 @@
 }
 .category{
     width: 399px;
-    height: 179px;
+    height: 517px;
     padding-top: 338px;
 }
 .category:hover {

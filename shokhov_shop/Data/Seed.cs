@@ -25,7 +25,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Осінній роспродаж",
                             Description = "Ексклюзивна коллекція яскравих товарів та ще , зі знижками",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668356999/lm1pr2lsosib7e4f6rpl.png"
                          },
                         new Category()
                         {
@@ -33,7 +33,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Нове",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668358394/go2oad91mnupwmvql9dv.jpg"
                          },
                         new Category()
                         {
@@ -41,7 +41,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Подарунки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357392/jvj1hb49iikwgljuwwbm.jpg"
                          },
                         new Category()
                         {
@@ -49,7 +49,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Свята та вечірки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357411/xklos76rkzg7a8yaso5t.jpg"
                          },
                         new Category()
                         {
@@ -57,7 +57,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Классика",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357447/x4mzsdezocomu1lbupob.jpg"
                          },
                         new Category()
                         {
@@ -65,7 +65,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Пальто",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357463/skto3qtd67a0afhn7eik.jpg"
                          },
                         new Category()
                         {
@@ -73,7 +73,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Сумки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357498/snfcixpd08lg4hamsxdk.jpg"
                          },
                         new Category()
                         {
@@ -81,7 +81,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Сукні та комбенізони",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357510/sxascimf22jzuzesj9ns.jpg"
                          },
                         new Category()
                         {
@@ -89,7 +89,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Джинси",
                             Description = "Дізнатися більше",
                             People = Enum.People.Women,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668357522/dt9joolcasognye0dmhn.jpg"
                          },
                         //Man Category
                         new Category()
@@ -98,7 +98,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Осінній роспродаж",
                             Description = "Ексклюзивна коллекція яскравих товарів та ще , зі знижками",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668359425/fh0wrzahsdv0dvn9xefo.png"
                          },
                         new Category()
                         {
@@ -106,7 +106,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Нове",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668361247/g8kzozjfwlk3m6cl7jrb.jpg"
                          },
                         new Category()
                         {
@@ -114,7 +114,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Подарунки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668359760/ugai98f1piw8zbnpa9le.png"
                          },
                         new Category()
                         {
@@ -122,7 +122,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Свята та вечірки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668360681/s7hbo0vgnz10tnehotvw.png"
                          },
                         new Category()
                         {
@@ -130,7 +130,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Класичні костюми",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668360693/xp7jiutqflhimsvugqgl.png"
                          },
                         new Category()
                         {
@@ -138,7 +138,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Верхній одяг",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668360704/pjdil41pdfux1doars8b.png"
                          },
                         new Category()
                         {
@@ -146,7 +146,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Сумки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668364153/ro5fqtwonzu8sivvo9v3.jpg"
                          },
                         new Category()
                         {
@@ -154,7 +154,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Штани",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668360741/dx6a4gmlo2figkktmhzk.png"
                          },
                         new Category()
                         {
@@ -162,7 +162,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Джинси",
                             Description = "Дізнатися більше",
                             People = Enum.People.Men,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668363931/ffvlvkoc11efduvjeaa8.jpg"
                          },
                         //Child Category
                         new Category()
@@ -171,7 +171,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Осінній роспродаж",
                             Description = "Ексклюзивна коллекція яскравих товарів та ще , зі знижками",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668364271/zfp2jqlk6frkcl7bnqw4.png"
                          },
                         new Category()
                         {
@@ -179,7 +179,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Нове",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668364931/fow1rk6bzzgadl92op1t.jpg"
                          },
                         new Category()
                         {
@@ -187,7 +187,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Подарунки",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668365389/un3gth3xucqveuophwie.jpg"
                          },
                         new Category()
                         {
@@ -195,7 +195,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Одяг для вечіок",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668365111/ntkamo7pxr8wgemgqstc.jpg"
                          },
                         new Category()
                         {
@@ -203,7 +203,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Шкільна форма",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668365563/xuptkllvbx6ndewlwv8s.jpg"
                          },
                         new Category()
                         {
@@ -211,7 +211,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Верхній одяг",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668365286/brunatmat8tf5hocnvqa.jpg"
                          },
                         new Category()
                         {
@@ -219,7 +219,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Сумки та портфелі",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668365686/qncw1wpvjud0qqkkrx2w.jpg"
                          },
                         new Category()
                         {
@@ -227,7 +227,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Штани",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668366511/l5dylsqqkx62izl3oswh.jpg"
                          },
                         new Category()
                         {
@@ -235,7 +235,7 @@ namespace shokhov_shop.Data
                             Name_For_User = "Джинси",
                             Description = "Дізнатися більше",
                             People = Enum.People.Child,
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360"
+                            Image = "http://res.cloudinary.com/dcoeealak/image/upload/v1668366674/axsvpfpgx9um58du5czg.jpg"
                          },
                     });
                         context.SaveChanges();

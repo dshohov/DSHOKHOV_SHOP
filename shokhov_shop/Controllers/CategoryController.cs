@@ -53,5 +53,82 @@ namespace shokhov_shop.Controllers
             categoryRepository.Add(category);
             return RedirectToAction("Woman");
         }
+        
+        public async Task<IActionResult> Edit(int id)
+        {
+            var category = await categoryRepository.GetByIdAsync(id);
+            var categoryVM = new EditCategoryViewModel
+            {
+                Name = category.Name,
+                Name_For_User = category.Name_For_User,
+                Description = category.Description,
+                URL = category.Image,
+                People = category.People
+            };
+            return View(categoryVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,EditCategoryViewModel categoryVM)
+        {
+            var editCategory = await categoryRepository.GetByIdAsyncNoTracking(id);
+
+            if(editCategory != null)
+            {
+                try
+                {
+                    await photoService.DeletePhotoAsync(editCategory.Image);
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("", "Could not delete photo");
+                    return View(categoryVM);
+                }
+                if(categoryVM.Image != null)
+                {
+                    var photoResult = await photoService.AddPhotoAsync(categoryVM.Image);
+
+                    var category = new Category
+                    {
+                        Id = id,
+                        Name = categoryVM.Name,
+                        Name_For_User = categoryVM.Name_For_User,
+                        Description = categoryVM.Description,
+                        People = categoryVM.People,
+                        Image = photoResult.Url.ToString()
+                    };
+                    categoryRepository.Update(category);
+                }
+                else
+                {
+                    var category = new Category
+                    {
+                        Id = id,
+                        Name = categoryVM.Name,
+                        Name_For_User = categoryVM.Name_For_User,
+                        Description = categoryVM.Description,
+                        People = categoryVM.People,
+                        Image = editCategory.Image
+                    };
+                    categoryRepository.Update(category);
+                }
+
+                switch ((categoryVM.People)
+)
+                {
+                    case People.Men:
+                        return RedirectToAction("Man");
+                    case People.Women:
+                        return RedirectToAction("Woman");
+                    case People.Child:
+                        return RedirectToAction("Child");
+                    default:
+                        break;
+                }
+
+                return RedirectToAction("Woman");
+            }
+            return View(categoryVM);
+        }
     }
 }

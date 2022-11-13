@@ -5,20 +5,23 @@
 <link rel="stylesheet" href="~/css/exaple categories css.css">
 <!--Example categories page-->
 <div class="context">
-    <div class="sales" style="background-image: url(@Model.First().Image;">
+    <div class="sales" style="background-image: url(@Model.First().Image);">
         <ul>
             <li class="li_first_sales">@Model.First().Name_For_User</li>
             <li class="li_second_sales">@Model.First().Description</li>
             <li class="li_third_sales_div"><a href="#" class="li_third_sales_a"><div class="li_third_sales">Подивитись</div></a></li>
         </ul>
+        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.First().Id"><button>Edit</button></a>
     </div>
     <table class="categories ">
         <tbody>
             <tr>
-                <td colspan="2"  style="background-image: url(@Model.ElementAt(1).Image;)">
+                <td colspan="2"  style="background-image: url(@Model.ElementAt(1).Image);">
                     <div  class="category_new">
                         <h3>@Model.ElementAt(1).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(1).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(1).Id"><button>Edit</button></a>
+
                     </div>
                                 
                 </td>
@@ -26,6 +29,7 @@
                     <div class="category">
                         <h3>@Model.ElementAt(2).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(2).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(2).Id"><button>Edit</button></a>
                     </div>
                 </td>
             </tr>
@@ -34,18 +38,24 @@
                     <div class="category">
                         <h3>@Model.ElementAt(3).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(3).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(3).Id"><button>Edit</button></a>
+
                     </div>
                 </td>
                 <td  style="background-image: url(@Model.ElementAt(4).Image);">
                     <div class="category">
                         <h3>@Model.ElementAt(4).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(4).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(4).Id"><button>Edit</button></a>
+
                     </div>
                 </td>
                 <td  style="background-image: url(@Model.ElementAt(5).Image);">
                     <div class="category">
                         <h3>@Model.ElementAt(5).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(5).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(5).Id"><button>Edit</button></a>
+
                     </div>
                 </td>
             </tr>
@@ -54,18 +64,24 @@
                     <div class="category">
                         <h3>@Model.ElementAt(6).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(6).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(6).Id"><button>Edit</button></a>
+
                     </div>
                 </td>
                 <td style="background-image: url(@Model.ElementAt(7).Image);">
                     <div class="category">
                         <h3>@Model.ElementAt(7).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(7).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(7).Id"><button>Edit</button></a>
+
                     </div>
                 </td>
                 <td style="background-image: url(@Model.ElementAt(8).Image);">
                     <div class="category">
                         <h3>@Model.ElementAt(8).Name_For_User</h3>
                         <a href="#">@Model.ElementAt(8).Description</a>
+                        <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(8).Id"><button>Edit</button></a>
+
                     </div>
                 </td>
             </tr>

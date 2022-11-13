@@ -34,6 +34,14 @@ namespace shokhov_shop.Repository
             }
         }
 
+        public async Task<Category> GetByIdAsync(int id)
+        {
+            return await context.Categories.FirstOrDefaultAsync(i => i.Id == id);
+        }
+        public async Task<Category> GetByIdAsyncNoTracking(int id)
+        {
+            return await context.Categories.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
         public bool Save()
         {
             var saved = this.context.SaveChanges();
@@ -45,5 +53,6 @@ namespace shokhov_shop.Repository
             this.context.Update(category);
             return Save();
         }
+
     }
 }
