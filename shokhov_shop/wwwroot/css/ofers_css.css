@@ -1,0 +1,99 @@
+/* Basik context */
+.ofers_nav h1{
+    margin-top: 29px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+
+    text-align: center;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+
+    color: #121314;
+}
+.ofers_nav ul{
+    text-align: center;
+    padding-left: 0px;
+}
+.ofers_nav a{
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* or 154% */
+    
+    letter-spacing: 0.3px;
+
+    color: #121314;
+}
+.ofers_nav li {
+    
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 29px;
+}
+.ofers_nav li:first-child{
+    margin-left: 0px;
+}
+.ofers ul{
+    text-align: center;
+    margin-top: 29px;
+}
+.ofers li{
+    display: inline-block;
+    margin-bottom: 29px;
+}
+.ofers h2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height, or 154% */
+
+    letter-spacing: 0.3px;
+
+    color: #121314;
+    text-align: left;
+}
+.holder{
+    position:relative;   
+    width:411px;
+    height:587px;
+    background-color: #fff;
+}
+.block{
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:0;
+    background: rgba(217, 217, 217, 0.35);
+    display:none;
+    height: 40px;
+    margin-top: 547px;
+    padding-top: 10px;
+}
+.holder:hover .block{
+    display:block;
+}
+.block a{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height, or 154% */
+
+    text-align: center;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    color: #121314;
+
+    
+}

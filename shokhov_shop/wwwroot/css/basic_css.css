@@ -53,6 +53,11 @@ header::after{
     clear: both;
     content: '';
 }
+main::after {
+    display: block;
+    clear: both;
+    content: '';
+}
 header h1{
     font-family: 'Rubik', sans-serif;
     font-style: normal;

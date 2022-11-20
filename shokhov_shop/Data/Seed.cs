@@ -240,7 +240,311 @@ namespace shokhov_shop.Data
                     });
                         context.SaveChanges();
                     }
+                if (!context.Products.Any())
+                {
+                    context.Products.AddRange(new List<Product>()
+                    {
+                        //Women product
+                        //Sales
+                        new Product(){
+                            Name = "Winter_Coat",
+                            Name_For_User = "Зимове пальто",
+                            Description = "Тепле зимове пальто , дуже добре підходить до теплої зими.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 99,
+                            People = Enum.People.Women,
+                            Sub_category = "Польто",
+                            Category = "Sales",
+                            Category_id = 1
+                        },
+                        new Product(){
+                            Name = "Jacket",
+                            Name_For_User = "Пухова желетка",
+                            Description = "Тепла річ, гарно підійде для коротких прогулянок.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 49,
+                            People = Enum.People.Women,
+                            Sub_category = "Желетка",
+                            Category = "Sales",
+                            Category_id = 1
+                        },
+                        new Product(){
+                            Name = "Jersey",
+                            Name_For_User = "В'язана кофта",
+                            Description = "Тепла яскрава кофта ідеально підійде до базового стилю.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 20,
+                            People = Enum.People.Women,
+                            Sub_category = "Кофта",
+                            Category = "Sales",
+                            Category_id = 1
+                        },
+                        //New
+                        new Product(){
+                            Name = "Jersey",
+                            Name_For_User = "В'язана зимова кофта",
+                            Description = "Тепла яскрава кофта ідеально підійде до святкуання різдва та нового року.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 20,
+                            People = Enum.People.Women,
+                            Sub_category = "Кофта",
+                            Category = "New",
+                            Category_id = 2
+                        },
+                        new Product(){
+                            Name = "Jersey",
+                            Name_For_User = "В'язана зимова кофта з ялинкою",
+                            Description = "Тепла яскрава кофта ідеально підійде до святкуання різдва та нового року.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 20,
+                            People = Enum.People.Women,
+                            Sub_category = "Кофта",
+                            Category = "New",
+                            Category_id = 2
+                        },
+                        new Product(){
+                            Name = "Scarf",
+                            Name_For_User = "Теплий шарф",
+                            Description = "Великий шарф який буде виділяти вас.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 20,
+                            People = Enum.People.Women,
+                            Sub_category = "Шарф",
+                            Category = "New",
+                            Category_id = 2
+                        },
+                        //Gift
+                        new Product(){
+                            Name = "Candle",
+                            Name_For_User = "Свічка",
+                            Description = "Ароматична свччка з запахом ванілі.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 5,
+                            People = Enum.People.Women,
+                            Sub_category = "Свічки",
+                            Category = "Gift",
+                            Category_id = 3
+                        },
+                        new Product(){
+                            Name = "Gift_Calendar",
+                            Name_For_User = "Подарунковий календар",
+                            Description = "Набір з подарунками які можна відкривати кожен день увесь місяць.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 15,
+                            People = Enum.People.Women,
+                            Sub_category = "Календар",
+                            Category = "Gift",
+                            Category_id = 3
+                        },
+                        new Product(){
+                            Name = "Parfume",
+                            Name_For_User = "Парфум",
+                            Description = "Парфум популярного бренду.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 10,
+                            People = Enum.People.Women,
+                            Sub_category = "Парфум",
+                            Category = "Gift",
+                            Category_id = 3
+                        },
+                        //Party
+                        new Product(){
+                            Name = "Party_Dress",
+                            Name_For_User = "Свякова коктельна сукня",
+                            Description = "Сукня яка подарує вам нові ємоції і погляди на себе.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 35,
+                            People = Enum.People.Women,
+                            Sub_category = "Коктельні сукні",
+                            Category = "Party",
+                            Category_id = 4
+                        },
+                        new Product(){
+                            Name = "Party_suit",
+                            Name_For_User = "Святковий костюм",
+                            Description = "Костюм який дає новий погляд на классику.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 60,
+                            People = Enum.People.Women,
+                            Sub_category = "Костюм",
+                            Category = "Party",
+                            Category_id = 4
+                        },
+                        new Product(){
+                            Name = "Party_Dress",
+                            Name_For_User = "Свякова сукня",
+                            Description = "Сукня яка подарує вам нові ємоції і погляди на себе.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 45,
+                            People = Enum.People.Women,
+                            Sub_category = "Коктельні сукні",
+                            Category = "Party",
+                            Category_id = 4
+                        },
+                        //Classik
+                        new Product(){
+                            Name = "Suit",
+                            Name_For_User = "Чорний класичний костюм",
+                            Description = "Классика яка завжди личить до будьякого образу.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 60,
+                            People = Enum.People.Women,
+                            Sub_category = "Костюми",
+                            Category = "Classik",
+                            Category_id = 5
+                        },
+                        new Product(){
+                            Name = "Trousers",
+                            Name_For_User = "Класичні штани у клітинку",
+                            Description = "Штани які гарно пасують до вашої фігури.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 30,
+                            People = Enum.People.Women,
+                            Sub_category = "Штани",
+                            Category = "Classik",
+                            Category_id = 5
+                        },
+                        new Product(){
+                            Name = "Shirt",
+                            Name_For_User = "Oversize сорочка",
+                            Description = "Базова річ у гардеробі кожної жінки.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 20,
+                            People = Enum.People.Women,
+                            Sub_category = "Сорочки",
+                            Category = "Classik",
+                            Category_id = 5
+                        },
+                        //Coat
+                        new Product(){
+                            Name = "Coat",
+                            Name_For_User = "Чорне класичне пальто",
+                            Description = "Классика яка завжди личить до будьякого образу.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 60,
+                            People = Enum.People.Women,
+                            Sub_category = "Пальто класичні",
+                            Category = "Coat",
+                            Category_id = 6
+                        },
+                        new Product(){
+                            Name = "Trench",
+                            Name_For_User = "Легкий тренч",
+                            Description = "Збереже вас від вітру та додасть вишуконасті вашому образу.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 60,
+                            People = Enum.People.Women,
+                            Sub_category = "Тренч",
+                            Category = "Coat",
+                            Category_id = 6
+                        },
+                        new Product(){
+                            Name = "Coat_Deziner",
+                            Name_For_User = "Дизайнерське пальто",
+                            Description = "Пальто яке міняє сприянятя про класику.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 80,
+                            People = Enum.People.Women,
+                            Sub_category = "Щось яскраве",
+                            Category = "Coat",
+                            Category_id = 6
+                        },
+                        //Bags
+                        new Product(){
+                            Name = "Tout Bags",
+                            Name_For_User = "Тоут Сумка",
+                            Description = "Сумка відрізняється формою прямокутника, оснащена парою ручок, для зручності її використання.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 30,
+                            People = Enum.People.Women,
+                            Sub_category = "Тоут",
+                            Category = "Bags",
+                            Category_id = 7
+                        },
+                        new Product(){
+                            Name = "Shopper Bags",
+                            Name_For_User = "Шоппер",
+                            Description = "Зручна велика сумка для міста.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 15,
+                            People = Enum.People.Women,
+                            Sub_category = "Шоппер",
+                            Category = "Bags",
+                            Category_id = 7
+                        },
+                        new Product(){
+                            Name = "Messendger Bags",
+                            Name_For_User = "Месседжер",
+                            Description = "Маленьа зручна сумка для вечірки.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 25,
+                            People = Enum.People.Women,
+                            Sub_category = "Мессенджер",
+                            Category = "Bags",
+                            Category_id = 7
+                        },
+                        //Dress
+                        new Product(){
+                            Name = "Rose Dress",
+                            Name_For_User = "Рожева сукня",
+                            Description = "Базова сукня.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 50,
+                            People = Enum.People.Women,
+                            Sub_category = "Сукні",
+                            Category = "Dress",
+                            Category_id = 8
+                        },
+                        new Product(){
+                            Name = "Jeans Combineson",
+                            Name_For_User = "Джинсовий комбінезон",
+                            Description = "Незвичайна річ яка потрібна для вашого гардероба.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 60,
+                            People = Enum.People.Women,
+                            Sub_category = "Комбінезон",
+                            Category = "Dress",
+                            Category_id = 8
+                        },
+                        //Jeans
+                        new Product(){
+                            Name = "Small Jeans",
+                            Name_For_User = "Короткі блакитні джинси",
+                            Description = "Укорочені жіночі джинси.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 25,
+                            People = Enum.People.Women,
+                            Sub_category = "Короткі джинси",
+                            Category = "Jeans",
+                            Category_id = 9
+                        },
+                        new Product(){
+                            Name = "Black jeans",
+                            Name_For_User = "Чорні джинси",
+                            Description = "Стильні чорні дизанерські джински з дірками на колінах.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 30,
+                            People = Enum.People.Women,
+                            Sub_category = "Джинси з дірками",
+                            Category = "Jeans",
+                            Category_id = 9
+                        },
+                        new Product(){
+                            Name = "Big Jeans",
+                            Name_For_User = "Широкі джинси",
+                            Description = "Ми не носимо штани в обтяжку, у нас тільки конкретні шаровари для грошей. Впав-віджався і штовхай землю *****.",
+                            Image = "https://res.cloudinary.com/dcoeealak/image/upload/v1668886183/vmgxbaoi4mdxydlzfpgu.png",
+                            Price = 40,
+                            People = Enum.People.Women,
+                            Sub_category = "Широкі джинси",
+                            Category = "Jeans",
+                            Category_id = 9
+                        },
+                    }) ;
+                    context.SaveChanges();
                 }
+
+            }
             }
 
         
