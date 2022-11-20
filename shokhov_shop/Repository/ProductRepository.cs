@@ -2,6 +2,7 @@
 using shokhov_shop.Data;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
+using System.Linq;
 
 namespace shokhov_shop.Repository
 {
@@ -44,12 +45,17 @@ namespace shokhov_shop.Repository
             return await context.Products.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public string GetNameCategory(int id)
+        {
+            var a = context.Categories.FirstOrDefault(c => c.Id == id);
+            return a.Name_For_User;
+        }
+
         public bool Save()
         {
             var saved = this.context.SaveChanges();
             return saved > 0 ? true : false;
         }
-
         public bool Update(Product product)
         {
             this.context.Update(product);

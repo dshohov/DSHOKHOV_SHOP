@@ -3,7 +3,6 @@
 @model EditCategoryViewModel
 <form asp-action="Edit" enctype="multipart/form-data" method="post">
     <div>
-        <input asp-for="Name" />
         <input asp-for="Name_For_User"/>
         <input asp-for="Description" />
         <select asp-for="People" asp-items="@Html.GetEnumSelectList<People>()">

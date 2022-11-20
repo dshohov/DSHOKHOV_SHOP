@@ -5,7 +5,6 @@
 
 <form asp-action="Create" enctype="multipart/form-data" method="post">
     <div>
-        <input asp-for="Name" />
         <input asp-for="Name_For_User"/>
         <input asp-for="Description" />
         <select asp-for="People" asp-items="@Html.GetEnumSelectList<People>()">
@@ -13,7 +12,6 @@
         </select>
         <input asp-for="Image" type="file"/>
         <input asp-for="Category_id"/>
-        <input asp-for="Category" />
         <input asp-for="Sub_category" />
     </div>
     <button type="submit">Sumbit</button>

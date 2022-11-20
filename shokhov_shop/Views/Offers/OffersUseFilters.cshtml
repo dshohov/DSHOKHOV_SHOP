@@ -1,10 +1,10 @@
 ﻿
 @model IEnumerable<Product>
-<link rel="stylesheet" href="~/css/ofers_css.css">
+<link rel="stylesheet" href="/css/ofers_css.css">
 <!--Offers example-->
 <div class="context">
     <div class="ofers_nav">
-        <h1>@Model.First().Category</h1>
+        <h1>@ViewBag.Messege</h1>
         <ul>
             <li><a asp-action="Offers" asp-controller="Offers" asp-route-id="@Model.First().Category_id">Усі</a></li>
         </ul>

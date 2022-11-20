@@ -17,12 +17,14 @@ namespace shokhov_shop.Controllers
         public async Task<IActionResult> Offers(int id)
         {
             IEnumerable<Product> products = await productRepository.GetAllProductInCategory(id);
+            ViewBag.Messege = productRepository.GetNameCategory(id);
             return View(products);
         }
         public async Task<IActionResult> OffersUseFilters(int id)
         {
             var product = await productRepository.GetByIdAsync(id);
-            IEnumerable<Product> products = await productRepository.UseFilters(product.Sub_category, product.Category_id); 
+            IEnumerable<Product> products = await productRepository.UseFilters(product.Sub_category, product.Category_id);
+            ViewBag.Messege = productRepository.GetNameCategory(product.Category_id);
             return View(products);
         }
         public IActionResult Create()
@@ -35,13 +37,11 @@ namespace shokhov_shop.Controllers
             var result = await photoService.AddPhotoAsync(productVM.Image);
             var product = new Product
             {
-                Name = productVM.Name,
                 Name_For_User = productVM.Name_For_User,
                 Description = productVM.Description,
                 People = productVM.People,
                 Image = result.Url.ToString(),
                 Sub_category = productVM.Sub_category,
-                Category = productVM.Category,
                 Category_id = productVM.Category_id,
                 Price = productVM.Price
             };

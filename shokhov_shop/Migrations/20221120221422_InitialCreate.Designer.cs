@@ -11,7 +11,7 @@ using shokhov_shop.Data;
 namespace shokhovshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221120201436_InitialCreate")]
+    [Migration("20221120221422_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -40,10 +40,6 @@ namespace shokhovshop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name_For_User")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -64,10 +60,6 @@ namespace shokhovshop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Category_id")
                         .HasColumnType("int");
 
@@ -76,10 +68,6 @@ namespace shokhovshop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

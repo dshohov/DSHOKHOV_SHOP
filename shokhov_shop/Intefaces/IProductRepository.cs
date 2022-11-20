@@ -9,6 +9,7 @@ namespace shokhov_shop.Intefaces
         Task<IEnumerable<Product>> UseFilters(string sub_category, int categoryId);
         Task<Product> GetByIdAsyncNoTracking(int id);
         Task<Product> GetByIdAsync(int id);
+        string GetNameCategory(int id);
         bool Add(Product product);
         bool Delete(Product product);
         bool Update(Product product);

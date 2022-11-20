@@ -44,7 +44,6 @@ namespace shokhov_shop.Controllers
             var result = await photoService.AddPhotoAsync(categoryVM.Image1);
             var category = new Category
             {
-                Name = categoryVM.Name,
                 Name_For_User = categoryVM.Name_For_User,
                 Description = categoryVM.Description,
                 People = categoryVM.People,
@@ -59,7 +58,6 @@ namespace shokhov_shop.Controllers
             var category = await categoryRepository.GetByIdAsync(id);
             var categoryVM = new EditCategoryViewModel
             {
-                Name = category.Name,
                 Name_For_User = category.Name_For_User,
                 Description = category.Description,
                 URL = category.Image,
@@ -91,7 +89,6 @@ namespace shokhov_shop.Controllers
                     var category = new Category
                     {
                         Id = id,
-                        Name = categoryVM.Name,
                         Name_For_User = categoryVM.Name_For_User,
                         Description = categoryVM.Description,
                         People = categoryVM.People,
@@ -104,7 +101,6 @@ namespace shokhov_shop.Controllers
                     var category = new Category
                     {
                         Id = id,
-                        Name = categoryVM.Name,
                         Name_For_User = categoryVM.Name_For_User,
                         Description = categoryVM.Description,
                         People = categoryVM.People,
