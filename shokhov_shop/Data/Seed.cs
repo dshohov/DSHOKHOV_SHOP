@@ -227,6 +227,7 @@ namespace shokhov_shop.Data
                             People = Enum.People.Women,
                             Sub_category = "Пальто",
                             Category_id = 1
+                            
                         },
                         new Product(){
                             Name_For_User = "Пухова желетка",
