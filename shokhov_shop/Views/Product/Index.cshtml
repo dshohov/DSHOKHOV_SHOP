@@ -1,0 +1,34 @@
+﻿ @model Product
+
+<link rel="stylesheet" href="~/css/offer.css">
+<div class="foto_price">
+    <div class="foto">
+        <img class="big_img" src="@Model.Image" alt="">
+        <img class="big_img" src="@Model.Image2" alt="">
+        <img class="small_img" src="@Model.Image3" alt="">
+        <img class="small_img" src="@Model.Image4" alt="">
+        <img class="small_img" src="@Model.Image5" alt="">
+    </div>
+    <div class="price">
+        <h3>@Model.Sub_category</h3>
+        <h2 class="f_left">@Model.Name_For_User</h2><h2 class="f_right">@Model.Price $</h2>
+        <h3>id - @Model.Id</h3>
+        <h4>Колір - білий</h4>
+        <h5>Розміри</h5>
+        <section class="vertical-menu">
+            <option value="">XXS</option>
+            <option value="">XS</option>
+            <option value="">S</option>
+            <option value="">M</option>
+            <option value="">L</option>
+            <option value="">XL</option>
+            <option value="">XXL</option>
+        </section>
+        <button>Додати до кошика</button>
+    </div>
+</div>
+<div class="description">
+    <h2>ОПИС</h2>
+    <h3>Матеріал - 100 % Замшева шкіра </h3>
+    <h3>@Model.Description</h3>
+</div>

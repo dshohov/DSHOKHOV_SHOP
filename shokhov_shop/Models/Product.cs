@@ -10,6 +10,10 @@ namespace shokhov_shop.Models
         public decimal Price { get; set; }
         public People People { get; set; }
         public string Image { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
+        public string Image5 { get; set; }
         public int Category_id { get; set; }
         public string Sub_category { get; set; }
     }

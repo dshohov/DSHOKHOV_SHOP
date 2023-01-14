@@ -66,5 +66,9 @@ namespace shokhov_shop.Repository
         {
             return await context.Products.Where(i => i.Category_id == categoryId).Where(i => i.Sub_category == sub_category).ToListAsync();
         }
+        public async Task<Product> GetProduct(int id)
+        {
+            return await context.Products.Where(i => i.Id == id).FirstAsync();
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace shokhov_shop.Intefaces
         bool Delete(Product product);
         bool Update(Product product);
         bool Save();
+        Task<Product> GetProduct(int id);
     }
 }

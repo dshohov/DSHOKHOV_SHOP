@@ -3,14 +3,18 @@
 @model EditProductViewModel
 
 
-<form asp-action="Create" enctype="multipart/form-data" method="post">
+<form asp-action="Edit" enctype="multipart/form-data" method="post">
     <div>
         Имя <input asp-for="Name_For_User"/><br />
         Опис <input asp-for="Description" /><br />
         Стать <select asp-for="People" asp-items="@Html.GetEnumSelectList<People>()">
             <option>--Select--</option>
         </select><br />
-        Фото вироба<input asp-for="Image" type="file"/><br />
+        Головне фото вироба<input asp-for="Image" type="file"/><br />
+        Фото вироба 2<input asp-for="Image2" type="file"/><br />
+        Фото вироба 3<input asp-for="Image3" type="file"/><br />
+        Фото вироба 4<input asp-for="Image4" type="file"/><br />
+        Фото вироба 5<input asp-for="Image5" type="file"/><br />
         Id категорії якоії належить <input asp-for="Category_id"/><br />
         Ціна <input asp-for="Price" /><br />
         Під категорія <input asp-for="Sub_category" /><br />

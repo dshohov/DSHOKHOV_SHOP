@@ -11,7 +11,7 @@ using shokhov_shop.Data;
 namespace shokhovshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221120221422_InitialCreate")]
+    [Migration("20230114160832_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -68,6 +68,22 @@ namespace shokhovshop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image4")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image5")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

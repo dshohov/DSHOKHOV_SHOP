@@ -34,14 +34,24 @@ namespace shokhov_shop.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductViewModel productVM)
+        
+        
         {
             var result = await photoService.AddPhotoAsync(productVM.Image);
+            var result2 = await photoService.AddPhotoAsync(productVM.Image2);
+            var result3 = await photoService.AddPhotoAsync(productVM.Image3);
+            var result4 = await photoService.AddPhotoAsync(productVM.Image4);
+            var result5 = await photoService.AddPhotoAsync(productVM.Image5);
             var product = new Product
             {
                 Name_For_User = productVM.Name_For_User,
                 Description = productVM.Description,
                 People = productVM.People,
                 Image = result.Url.ToString(),
+                Image2 = result2.Url.ToString(),
+                Image3 = result3.Url.ToString(),
+                Image4 = result4.Url.ToString(),
+                Image5 = result5.Url.ToString(),
                 Sub_category = productVM.Sub_category,
                 Category_id = productVM.Category_id,
                 Price = productVM.Price
@@ -76,16 +86,23 @@ namespace shokhov_shop.Controllers
                 try
                 {
                     await photoService.DeletePhotoAsync(editProduct.Image);
+                    await photoService.DeletePhotoAsync(editProduct.Image2);
+                    await photoService.DeletePhotoAsync(editProduct.Image3);
+                    await photoService.DeletePhotoAsync(editProduct.Image4);
+                    await photoService.DeletePhotoAsync(editProduct.Image5);
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "Could not delete photo");
                     return View(productVM);
                 }
-                if (productVM.Image != null)
+                if ((productVM.Image != null) && (productVM.Image2 != null) && (productVM.Image3 != null) && (productVM.Image4 != null) && (productVM.Image5 != null))
                 {
                     var photoResult = await photoService.AddPhotoAsync(productVM.Image);
-
+                    var photoResult2 = await photoService.AddPhotoAsync(productVM.Image2);
+                    var photoResult3 = await photoService.AddPhotoAsync(productVM.Image3);
+                    var photoResult4 = await photoService.AddPhotoAsync(productVM.Image4);
+                    var photoResult5 = await photoService.AddPhotoAsync(productVM.Image5);
                     var product = new Product
                     {
                         Id = id,
@@ -93,6 +110,10 @@ namespace shokhov_shop.Controllers
                         Description = productVM.Description,
                         People = productVM.People,
                         Image = photoResult.Url.ToString(),
+                        Image2 = photoResult2.Url.ToString(),
+                        Image3 = photoResult3.Url.ToString(),
+                        Image4 = photoResult4.Url.ToString(),
+                        Image5 = photoResult5.Url.ToString(),
                         Category_id = productVM.Category_id,
                         Price = productVM.Price,
                         Sub_category = productVM.Sub_category
@@ -110,7 +131,12 @@ namespace shokhov_shop.Controllers
                         Category_id = productVM.Category_id,
                         Price = productVM.Price,
                         Sub_category = productVM.Sub_category,
-                        Image = editProduct.Image
+                        Image = editProduct.Image,
+                        Image2 = editProduct.Image2,
+                        Image3 = editProduct.Image3,
+                        Image4 = editProduct.Image4,
+                        Image5 = editProduct.Image5
+                       
                     };
                     productRepository.Update(product);
                 }
@@ -119,16 +145,16 @@ namespace shokhov_shop.Controllers
 )
                 {
                     case People.Men:
-                        return RedirectToAction("Man");
+                        return RedirectToAction("Man", "Category");
                     case People.Women:
-                        return RedirectToAction("Woman");
+                        return RedirectToAction("Woman", "Category");
                     case People.Child:
-                        return RedirectToAction("Child");
+                        return RedirectToAction("Child", "Category");
                     default:
                         break;
                 }
 
-                return RedirectToAction("Woman");
+                return RedirectToAction("Woman", "Category");
             }
             return View(productVM);
         }

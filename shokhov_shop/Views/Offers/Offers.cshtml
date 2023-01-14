@@ -1,6 +1,7 @@
 ﻿
 @model IEnumerable<Product>
 <link rel="stylesheet" href="~/css/ofers_css.css">
+<a asp-action="Create" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Create</button></a>
 <!--Offers example-->
 <div class="context">
     <div class="ofers_nav">
@@ -31,11 +32,12 @@
                 <li>
                     <div style="background-image: url(@item.Image)" class="holder">
                         <div class="block">
-                            <a href="#">Деталі</a>
+                            <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">Деталі</a>
                         </div>
                     </div>
                     <h2>@item.Name_For_User</h2>
-                    <h2>@item.Price $</h2>                            
+                    <h2>@item.Price $</h2>    
+                    <a asp-action="Edit" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Edit</button></a>
                 </li>
             }
         </ul>

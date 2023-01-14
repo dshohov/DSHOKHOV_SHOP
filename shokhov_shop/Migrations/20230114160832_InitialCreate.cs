@@ -37,6 +37,10 @@ namespace shokhovshop.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     People = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image4 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image5 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Categoryid = table.Column<int>(name: "Category_id", type: "int", nullable: false),
                     Subcategory = table.Column<string>(name: "Sub_category", type: "nvarchar(max)", nullable: false)
                 },
