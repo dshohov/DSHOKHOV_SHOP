@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using shokhov_shop.Data;
 using shokhov_shop.Helpers;
 using shokhov_shop.Intefaces;
+using shokhov_shop.Interfaces;
+using shokhov_shop.Models;
 using shokhov_shop.Repository;
 using shokhov_shop.Services;
 
@@ -16,6 +19,29 @@ builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<ISendGridEmail, SendGridEmail>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration.GetSection("SendGrid"));
+builder.Services.AddAuthentication()
+.AddFacebook(options =>
+{
+    options.AppId = "611227601011839";
+    options.AppSecret = "2ada729ca9da5bc63edbba537a0debee";
+})
+.AddGoogle(options =>
+{
+    options.ClientId = "425521569160-4ahrps3rtg863e10bnsfh9bo893nkrts.apps.googleusercontent.com";
+    options.ClientSecret = "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";
+});
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequiredLength = 5;
+    opt.Password.RequireLowercase = true;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
+    opt.Lockout.MaxFailedAccessAttempts = 5;
+    //opt.SignIn.RequireConfirmedAccount = true;
 });
 builder.Services.AddSession(options =>
 {
@@ -42,7 +68,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

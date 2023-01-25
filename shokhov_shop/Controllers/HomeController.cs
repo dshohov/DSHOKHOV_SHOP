@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using shokhov_shop.Models;
+﻿using shokhov_shop.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace shokhov_shop.Controllers

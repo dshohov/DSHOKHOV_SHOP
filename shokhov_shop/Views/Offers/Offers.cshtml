@@ -1,7 +1,16 @@
 ﻿
 @model IEnumerable<Product>
 <link rel="stylesheet" href="~/css/ofers_css.css">
-<a asp-action="Create" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Create</button></a>
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Create</button></a>        
+    }
+
+}
+
+
 <!--Offers example-->
 <div class="context">
     <div class="ofers_nav">
@@ -37,7 +46,14 @@
                     </div>
                     <h2>@item.Name_For_User</h2>
                     <h2>@item.Price $</h2>    
-                    <a asp-action="Edit" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Edit</button></a>
+                    @if(User.Identity.IsAuthenticated){
+                        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Edit</button></a>    
+                                
+                        }
+                    }
+                        
                 </li>
             }
         </ul>

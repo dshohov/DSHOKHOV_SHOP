@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,7 +36,22 @@
                 </div>
                 <div class="nav_right">
                     <ul>
-                        <li><a href="#" class="underline-one">Вхід</a></li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a class="underline-one" href="#">Hello @UserManager.GetUserName(User)</a>
+                            </li>
+                            <li>
+                                <form id="logoutForm" method="post" asp-controller="Account" asp-action="LogOff">
+                                    <button type="submit" style="all: unset;" ><a class="underline-one">Logout</a></button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a asp-action="Login" asp-controller="Account" class="underline-one">Вхід</a></li>
+                        }
+                        
                         <li><a href="#" class="underline-one">Корзина</a></li>
                     </ul>
                 </div>

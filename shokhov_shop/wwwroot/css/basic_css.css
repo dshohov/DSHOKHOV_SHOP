@@ -85,9 +85,9 @@ header li {
     position: absolute;
 }
 .nav_right{
+    float: right;
     display: inline-block;
-    position: absolute;
-    margin-left: 964px;
+    margin-right: 34px;
     margin-top: 25px;
 }
 .my_nav{
