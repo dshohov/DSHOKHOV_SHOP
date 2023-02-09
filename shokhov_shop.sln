@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shokhov_shop", "shokhov_shop\shokhov_shop.csproj", "{D6064820-E786-48FF-A59B-2897C3D54C5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Search_WebApi", "Search_WebApi\Search_WebApi.csproj", "{F2B937B8-6CD4-418E-BE44-9A36D1F84B89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D6064820-E786-48FF-A59B-2897C3D54C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6064820-E786-48FF-A59B-2897C3D54C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6064820-E786-48FF-A59B-2897C3D54C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2B937B8-6CD4-418E-BE44-9A36D1F84B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B937B8-6CD4-418E-BE44-9A36D1F84B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B937B8-6CD4-418E-BE44-9A36D1F84B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B937B8-6CD4-418E-BE44-9A36D1F84B89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -76,6 +76,13 @@
 
         <main>
             <div class="context">
+                <form action="/Offers/Search" method="post">
+                  <div>
+                    <label for="serchTerm">Search:</label>
+                    <input type="text" id="serchTerm" name="serchTerm">
+                  </div>
+                  <button type="submit">Search</button>
+                </form>
                 @RenderBody()
             </div>
         </main>

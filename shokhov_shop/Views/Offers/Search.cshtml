@@ -1,0 +1,61 @@
+﻿
+@model IEnumerable<Product>
+<link rel="stylesheet" href="~/css/ofers_css.css">
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Create</button></a>        
+    }
+
+}
+
+
+<!--Offers example-->
+<div class="context">
+    <div class="ofers_nav">
+        <h1>@ViewBag.Messege</h1>
+        <ul>
+            <li><a asp-action="Offers" asp-controller="Offers" asp-route-id="@Model.First().Category_id">Усі</a></li>
+            @{
+                int i = 0;
+                Dictionary<int, string> sub_categories = new Dictionary<int, string>();
+                @foreach(Product item in Model)
+                {
+                    
+                    if (!sub_categories.ContainsValue(item.Sub_category))
+                    {
+                        sub_categories.Add(i,item.Sub_category);
+                        i++;
+                        <li><a asp-route-id="@item.Id" asp-action="OffersUseFilters" asp-controller="Offers">@item.Sub_category</a></li>
+                    }
+                }
+            }
+            
+        </ul>
+    </div>
+    <div class="ofers">
+        <ul>
+            @foreach(Product item in Model)
+            {
+                <li>
+                    <div style="background-image: url(@item.Image)" class="holder">
+                        <div class="block">
+                            <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">Деталі</a>
+                        </div>
+                    </div>
+                    <h2>@item.Name_For_User</h2>
+                    <h2>@item.Price $</h2>    
+                    @if(User.Identity.IsAuthenticated){
+                        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Edit</button></a>    
+                                
+                        }
+                    }
+                        
+                </li>
+            }
+        </ul>
+    </div>
+</div>

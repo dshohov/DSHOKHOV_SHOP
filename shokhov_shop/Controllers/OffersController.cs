@@ -3,17 +3,20 @@ using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
 using shokhov_shop.ViewModels;
+using System.Net.Http;
 
 namespace shokhov_shop.Controllers
 {
     public class OffersController : Controller
     {
+        private readonly HttpClient _httpClient;
         private readonly IProductRepository productRepository;
         private readonly IPhotoService photoService;
         public OffersController(IProductRepository productRepository, IPhotoService photoService)
         {
             this.productRepository = productRepository;
             this.photoService = photoService;
+            _httpClient = new HttpClient();
         }
         public async Task<IActionResult> Offers(int id)
         {
@@ -157,6 +160,24 @@ namespace shokhov_shop.Controllers
                 return RedirectToAction("Woman", "Category");
             }
             return View(productVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Search(string serchTerm)
+        {
+            var response = await _httpClient.GetAsync("https://localhost:7091/api/Product/" + serchTerm);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsAsync<List<Product>>();
+                if(data.Count == 0)
+                    return RedirectToAction("NotFound");
+                return View(data);
+            }
+            return View();
+        }
+        public IActionResult NotFound()
+        {
+            return View();
         }
     }
 }
