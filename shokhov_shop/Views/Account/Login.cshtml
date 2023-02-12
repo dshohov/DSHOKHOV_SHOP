@@ -8,6 +8,7 @@
     <input type="checkbox" id="chk" aria-hidden="true">    
     <div class="signup">
         <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl" method="post" role="form">
+
             <label for="chk" aria-hidden="true">Login</label>
             <input type="text" asp-for="UserName" placeholder="User Name" required="">
             <span asp-validation-for="UserName" class="text-danger"></span>
@@ -25,6 +26,7 @@
             <div >
                 <section>
                     <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" role="form">
+                        @Html.AntiForgeryToken()
                         <div class="provider">
                                 @foreach(var provider in loginProivders)
                                 {

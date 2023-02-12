@@ -43,6 +43,7 @@
                             </li>
                             <li>
                                 <form id="logoutForm" method="post" asp-controller="Account" asp-action="LogOff">
+
                                     <button type="submit" style="all: unset;" ><a class="underline-one">Logout</a></button>
                                 </form>
                             </li>
@@ -76,7 +77,8 @@
 
         <main>
             <div class="context">
-                <form action="/Offers/Search" method="post">
+                <form asp-action="Search" asp-controller="Offers"  method="post">
+
                   <div>
                     <label for="serchTerm">Search:</label>
                     <input type="text" id="serchTerm" name="serchTerm">

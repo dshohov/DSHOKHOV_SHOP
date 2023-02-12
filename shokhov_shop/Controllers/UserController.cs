@@ -97,6 +97,7 @@ namespace shokhov_shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(string userId)
         {
             var user = _db.AppUser.FirstOrDefault(u => u.Id == userId);

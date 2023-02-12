@@ -154,6 +154,7 @@ namespace shokhov_shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel, string? returnUrl = null)
         {
             registerViewModel.ReturnUrl = returnUrl;
@@ -263,6 +264,7 @@ namespace shokhov_shop.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)

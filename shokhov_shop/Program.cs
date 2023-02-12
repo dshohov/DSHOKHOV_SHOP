@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Polly;
 using shokhov_shop.Data;
 using shokhov_shop.Helpers;
 using shokhov_shop.Intefaces;
@@ -8,10 +9,13 @@ using shokhov_shop.Models;
 using shokhov_shop.Repository;
 using shokhov_shop.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors();//attack type CSRF prevention.
+builder.Services.AddAntiforgery();//включить поддержку анти-CSRF
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
@@ -47,10 +51,15 @@ builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
-
+builder.Services.AddHttpClient();
 var app = builder.Build();
+app.UseHsts(); // Prevents Mitm-attack
+app.UseHttpsRedirection();//redirect http requests to https
+app.UseCors(options => options.WithOrigins("https://localhost:7240").AllowAnyMethod()); //Protection against CORS attacks
+
+
 // Add seed for db
-if(args.Length == 1 && args[0].ToLower() == "seeddata")
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     Seed.SeedData(app);
 }
@@ -75,4 +84,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Category}/{action=Woman}/{id?}");
 
+app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+app.Use(async (context, next) => {
+    context.Response.Headers.Add("Content-Security-Policy", "script-src 'self'");
+
+    await next();
+
+}); //Add Content Security Policy Prevents XSS-attack
 app.Run();

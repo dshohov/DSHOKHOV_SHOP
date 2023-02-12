@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Polly;
+using Polly.Timeout;
 using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
@@ -36,6 +38,7 @@ namespace shokhov_shop.Controllers
             return View("Create");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProductViewModel productVM)
         
         
@@ -80,6 +83,7 @@ namespace shokhov_shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EditProductViewModel productVM)
         {
             var editProduct = await productRepository.GetByIdAsyncNoTracking(id);
@@ -162,14 +166,16 @@ namespace shokhov_shop.Controllers
             return View(productVM);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Search(string serchTerm)
         {
+
             var response = await _httpClient.GetAsync("https://localhost:7091/api/Product/" + serchTerm);
 
             if (response.IsSuccessStatusCode)
             {
                 var data = await response.Content.ReadAsAsync<List<Product>>();
-                if(data.Count == 0)
+                if (data.Count == 0)
                     return RedirectToAction("NotFound");
                 return View(data);
             }

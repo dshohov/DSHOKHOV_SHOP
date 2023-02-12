@@ -6,6 +6,7 @@
     <input type="checkbox" id="chk" aria-hidden="true">    
     <div class="signup">
         <form asp-controller="Account" asp-action="Register" method="post" role="form">
+
             <label for="chk" aria-hidden="true">Sign In</label>
             <input type="text" asp-for="Email" placeholder="User Name" required="">
             <span asp-validation-for="Email" class="text-danger"></span>

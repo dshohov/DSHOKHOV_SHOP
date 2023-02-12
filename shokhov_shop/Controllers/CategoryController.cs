@@ -39,6 +39,7 @@ namespace shokhov_shop.Controllers
         }
             
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateCategoryViewModel categoryVM)
         {
             var result = await photoService.AddPhotoAsync(categoryVM.Image1);
@@ -67,6 +68,7 @@ namespace shokhov_shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,EditCategoryViewModel categoryVM)
         {
             var editCategory = await categoryRepository.GetByIdAsyncNoTracking(id);

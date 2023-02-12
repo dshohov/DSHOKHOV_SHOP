@@ -41,6 +41,7 @@
     <input type="checkbox" id="chk" aria-hidden="true">    
     <div class="signup">
         <form asp-controller="Account" asp-action="ExternalLoginConfirmation" method="post" role="form" asp-route-returnurl="@ViewData["ReturnUrl"]">
+
             <label for="chk" aria-hidden="true">Login</label>
             <input asp-for="Email" readonly class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
