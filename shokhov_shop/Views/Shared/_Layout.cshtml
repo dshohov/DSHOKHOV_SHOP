@@ -28,7 +28,21 @@
                         <li><a asp-controller="Category" asp-action="Woman" class="underline-one">Жіноче</a></li>
                         <li><a asp-controller="Category" asp-action="Man" class="underline-one">Чоловіче</a></li>
                         <li><a asp-controller="Category" asp-action="Child" class="underline-one">Дитяче</a></li>
-
+                        <li><div class="image-container">
+                            <img src="~/img/search.png" alt="Image" style="width: 14px; height:14px;">
+                            <div class="form-container">
+                              <form asp-action="Search" asp-controller="Offers" method="post">
+                                <input type="text" id="input-field">
+                                <button type="submit">Send</button>
+                              </form>
+                            </div>
+                          </div>
+                        <script>const imageContainer = document.querySelector('.image-container');
+                            const formContainer = document.querySelector('.form-container');
+                            
+                            imageContainer.addEventListener('click', () => {
+                              formContainer.style.display = 'block';
+                            });</script></li>
                     </ul>
                 </div>
                 <div class="nav_logo">
@@ -54,6 +68,7 @@
                         }
                         
                         <li><a href="#" class="underline-one">Корзина</a></li>
+                        <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
                     </ul>
                 </div>
                 <div>
@@ -77,14 +92,6 @@
 
         <main>
             <div class="context">
-                <form asp-action="Search" asp-controller="Offers"  method="post">
-
-                  <div>
-                    <label for="serchTerm">Search:</label>
-                    <input type="text" id="serchTerm" name="serchTerm">
-                  </div>
-                  <button type="submit">Search</button>
-                </form>
                 @RenderBody()
             </div>
         </main>

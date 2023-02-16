@@ -19,6 +19,7 @@ builder.Services.AddAntiforgery();//включить поддержку анти-CSRF
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.AddScoped<IChatHistoryRepository, ChatHistoryRepository>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<ISendGridEmail, SendGridEmail>();
+builder.Services.AddSignalR();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration.GetSection("SendGrid"));
 builder.Services.AddAuthentication()
 .AddFacebook(options =>
@@ -83,10 +85,14 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Category}/{action=Woman}/{id?}");
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/chat");
+});
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
-app.Use(async (context, next) => {
+app.Use(async (context, next) =>
+{
     context.Response.Headers.Add("Content-Security-Policy", "script-src 'self'");
 
     await next();

@@ -1,0 +1,11 @@
+﻿@using shokhov_shop.Models;
+@model List<ChatHistory>
+
+<h1>Chat History</h1>
+
+<ul>
+    @foreach (var message in Model)
+    {
+        <li>@message.SenderName: @message.Message <input value="@message.SenderName" type="submit" /></li>
+    }
+</ul>

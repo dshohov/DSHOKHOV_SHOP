@@ -10,6 +10,7 @@ namespace shokhov_shop.Data
         {
 
         }
+        public DbSet<ChatHistory> ChatHistory { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<AppUser> AppUser { get; set; }

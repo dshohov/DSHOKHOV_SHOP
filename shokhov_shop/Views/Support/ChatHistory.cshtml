@@ -1,0 +1,29 @@
+﻿@using shokhov_shop.Models;
+@model List<ChatHistory>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@if(User.Identity.IsAuthenticated){
+    @if(User.IsInRole("Admin"))
+    {
+         <h1>Chat History</h1>
+
+        <ul>
+            @foreach (var message in Model)
+            {
+                <li>@message.SenderName: @message.Message <input value="@message.SenderName" type="submit" /></li>
+            }
+        </ul>
+    }
+    @if(User.IsInRole("SuperAdmin"))
+    {
+        <h1>Chat History</h1>
+
+        <ul>
+            @foreach (var message in Model)
+            {
+                <li>@message.SenderName: @message.Message <input value="@message.SenderName" type="submit" /></li>
+            }
+        </ul>
+    }
+}

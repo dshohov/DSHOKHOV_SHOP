@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<link rel="stylesheet" href="~/css/support.css">
+
+    <div class="main">  	
+<input type="checkbox"  id="chk" aria-hidden="true">
+<div class="signup"  >
+        <form>
+            <label for="chk" aria-hidden="true">Підтримка</label>
+            <div class="sub_text">
+            <p>Надішліть нам ваше повідомлення, ми його обробимо та зв'яжемося з вами через єлктрону скриньку. 
+                Тут ви можете написати відгук, розповсти що вам подобається або що потрібно вдосконалити.
+                Ваша думка для нас дуже важлива.</p>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if(!User.IsInRole("Admin"))
+                    @if(!User.IsInRole("SuperAdmin"))
+                    {
+                        <textarea id="message" ></textarea>
+                        <button id="sendmessage">Відправити</button>    
+                    }
+            }
+            else
+            {
+                <h2 id="log_sig"><b>Для в відправки повідомлення зайдіть в свій акаунт або зареєструйтесь.</b</h2> 
+            }
+        </form>
+    </div>        
+</div>
+    <input type="hidden" id="username" value="@UserManager.GetUserName(User)" />
+    <!--Script references. -->
+    <!--Reference the SignalR library. -->
+    <script type="text/javascript" src="~/lib/signalr.min.js"></script>
+    <!--Add script to update the page and send messages.-->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var messageInput = document.getElementById('message');
+
+            // Get the user name and store it to prepend to messages.
+            var name = document.getElementById("username").value;
+            // Set initial focus to message input box.
+            messageInput.focus();
+
+            // Start the connection.
+            var connection = new signalR.HubConnectionBuilder()
+                                .withUrl('/chat')
+                                .build();
+
+            // Create a function that the hub can call to broadcast messages.
+            connection.on('broadcastMessage', function (name, message) {
+                // Html encode display name and message.
+                var encodedName = name;
+                var encodedMsg = message;
+            });
+
+            // Transport fallback functionality is now built into start.
+            connection.start()
+                .then(function () {
+                    console.log('connection started');
+                    document.getElementById('sendmessage').addEventListener('click', function (event) {
+                        // Call the Send method on the hub.
+                        connection.invoke('send', name, messageInput.value);
+
+                        // Clear text box and reset focus for next comment.
+                        messageInput.value = '';
+                        messageInput.focus();
+                        event.preventDefault();
+                    });
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+        });
+    </script>
