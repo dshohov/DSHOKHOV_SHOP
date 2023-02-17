@@ -95,7 +95,7 @@ namespace shokhov_shop.Controllers
                 var result = await _signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, lockoutOnFailure: true); 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Woman", "Category");
                 }
                 if (result.IsLockedOut)
                 {

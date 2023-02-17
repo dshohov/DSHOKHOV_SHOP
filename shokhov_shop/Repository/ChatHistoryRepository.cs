@@ -18,12 +18,23 @@ namespace shokhov_shop.Repository
             return Save();
         }
 
+        public bool Delete(ChatHistory chatHistory)
+        {
+            this.context.Remove(chatHistory);
+            return Save();
+        }
+
         public List<ChatHistory> GetChatHistories()
         {
             return this.context.ChatHistory
                 .OrderByDescending(m => m.CreatedDate)
                 .Take(50)
                 .ToList();
+        }
+
+        public ChatHistory GetMessage(int chatId)
+        {
+            return this.context.ChatHistory.Where(i => i.Id == chatId).FirstOrDefault();
         }
 
         public bool Save()

@@ -1,0 +1,32 @@
+﻿@using shokhov_shop.ViewModels
+@model SendResponseViewModel
+
+<h1>@Model.EmailUser</h1>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<link rel="stylesheet" href="~/css/support.css">
+@if (User.Identity.IsAuthenticated)
+{
+    @if (!User.IsInRole("User"))
+    {
+        <div class="main">  	
+            <input type="checkbox"  id="chk" aria-hidden="true">
+            <div class="signup"  >
+                <form asp-action="SendResponse" asp-controller="Support">
+                    <label for="chk" aria-hidden="true">Вітправити відповіть</label>
+                    <div class="sub_text">
+                        <p>Тут ви повинні написати ваше повідомлення користувачу, яке він зготом отримає на поштову скриньку.</p>
+                    </div>
+                    <input type="hidden" id="username" asp-for="EmailUser" value="@Model.EmailUser" />
+                    <textarea id="message" asp-for="Message"></textarea>
+                    <button id="sendmessage" onclick="return confirm('Are you sure you want to delete this?')">Відправити</button>    
+                </form>
+            </div>        
+        </div>
+        
+    }
+
+}
+

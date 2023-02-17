@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
@@ -30,7 +31,7 @@
         </form>
     </div>        
 </div>
-    <input type="hidden" id="username" value="@UserManager.GetUserName(User)" />
+    <input type="hidden" id="username" value="@User.FindFirstValue(ClaimTypes.Email)" />
     <!--Script references. -->
     <!--Reference the SignalR library. -->
     <script type="text/javascript" src="~/lib/signalr.min.js"></script>
