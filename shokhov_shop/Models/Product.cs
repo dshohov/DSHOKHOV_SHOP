@@ -1,4 +1,5 @@
 ﻿using shokhov_shop.Data.Enum;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace shokhov_shop.Models
 {
@@ -16,5 +17,8 @@ namespace shokhov_shop.Models
         public string Image5 { get; set; }
         public int Category_id { get; set; }
         public string Sub_category { get; set; }
+        public string Sizes { get; set; }
+        
+
     }
 }

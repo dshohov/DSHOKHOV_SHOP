@@ -18,5 +18,6 @@ namespace shokhov_shop.ViewModels
         public decimal Price { get; set; }
         public int Category_id { get; set; }
         public string Sub_category { get; set; }
+        public string[] Sizes_Array { get; set; }
     }
 }

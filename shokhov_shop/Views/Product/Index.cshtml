@@ -16,13 +16,10 @@
         <h4>Колір - білий</h4>
         <h5>Розміри</h5>
         <section class="vertical-menu">
-            <option value="">XXS</option>
-            <option value="">XS</option>
-            <option value="">S</option>
-            <option value="">M</option>
-            <option value="">L</option>
-            <option value="">XL</option>
-            <option value="">XXL</option>
+            @foreach(string item in  Model.Sizes.Split(","))
+            {
+                <option value="@item">@item</option>
+            }
         </section>
         <button>Додати до кошика</button>
     </div>

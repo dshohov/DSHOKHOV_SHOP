@@ -68,7 +68,22 @@
                         }
                         
                         <li><a href="#" class="underline-one">Корзина</a></li>
-                        <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a asp-action="ChatHistory" asp-controller="Support" class="underline-one">Підтримка</a></li>   
+                            }
+                            else
+                            {
+                                <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
+                            }
+                        }
+                        else
+                        {
+                                <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
+                        }
+
                     </ul>
                 </div>
                 <div>

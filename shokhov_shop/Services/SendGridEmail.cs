@@ -28,6 +28,7 @@ namespace shokhov_shop.Services
 
         private async Task Execute(string apiKey, string subject, string message, string toEmail)
         {
+            var api = Environment.GetEnvironmentVariable("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");
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {

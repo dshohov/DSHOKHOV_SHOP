@@ -20,14 +20,14 @@
             @{
                 int i = 0;
                 Dictionary<int, string> sub_categories = new Dictionary<int, string>();
-                @foreach(Product item in Model)
+                    @foreach(Product item in Model)
                 {
                     
                     if (!sub_categories.ContainsValue(item.Sub_category))
                     {
                         sub_categories.Add(i,item.Sub_category);
                         i++;
-                        <li><a asp-route-id="@item.Id" asp-action="OffersUseFilters" asp-controller="Offers">@item.Sub_category</a></li>
+                            <li><a asp-route-id="@item.Id" asp-action="OffersUseFilters" asp-controller="Offers">@item.Sub_category</a></li>
                     }
                 }
             }
@@ -39,7 +39,7 @@
             @foreach(Product item in Model)
             {
                 <li>
-                    <div style="background-image: url(@item.Image)" class="holder">
+                    <div style="background: url(@item.Image) no-repeat center center; background-size: cover;" class="holder">
                         <div class="block">
                             <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">Деталі</a>
                         </div>

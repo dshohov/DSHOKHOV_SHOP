@@ -40,16 +40,18 @@ namespace shokhov_shop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProductViewModel productVM)
-        
-        
         {
+            string[] sizes_Array = productVM.Sizes_Array ?? new string[0];
             var result = await photoService.AddPhotoAsync(productVM.Image);
             var result2 = await photoService.AddPhotoAsync(productVM.Image2);
             var result3 = await photoService.AddPhotoAsync(productVM.Image3);
             var result4 = await photoService.AddPhotoAsync(productVM.Image4);
             var result5 = await photoService.AddPhotoAsync(productVM.Image5);
+            
+            
             var product = new Product
             {
+                
                 Name_For_User = productVM.Name_For_User,
                 Description = productVM.Description,
                 People = productVM.People,
@@ -60,7 +62,9 @@ namespace shokhov_shop.Controllers
                 Image5 = result5.Url.ToString(),
                 Sub_category = productVM.Sub_category,
                 Category_id = productVM.Category_id,
-                Price = productVM.Price
+                Price = productVM.Price,
+                Sizes = string.Join(",", sizes_Array)
+
             };
             productRepository.Add(product);
             return RedirectToAction("Offers");
@@ -77,7 +81,9 @@ namespace shokhov_shop.Controllers
                 People = product.People,
                 Category_id = product.Category_id,
                 Price = product.Price,
-                Sub_category = product.Sub_category
+                Sub_category = product.Sub_category,
+                Sizes_Array = product.Sizes.Split(",")
+                
             };
             return View(productVM);
         }
@@ -105,6 +111,8 @@ namespace shokhov_shop.Controllers
                 }
                 if ((productVM.Image != null) && (productVM.Image2 != null) && (productVM.Image3 != null) && (productVM.Image4 != null) && (productVM.Image5 != null))
                 {
+                    string[] sizes_Array = productVM.Sizes_Array ?? new string[0];
+                    
                     var photoResult = await photoService.AddPhotoAsync(productVM.Image);
                     var photoResult2 = await photoService.AddPhotoAsync(productVM.Image2);
                     var photoResult3 = await photoService.AddPhotoAsync(productVM.Image3);
@@ -123,12 +131,14 @@ namespace shokhov_shop.Controllers
                         Image5 = photoResult5.Url.ToString(),
                         Category_id = productVM.Category_id,
                         Price = productVM.Price,
-                        Sub_category = productVM.Sub_category
+                        Sub_category = productVM.Sub_category,
+                        Sizes = string.Join(",", sizes_Array)
                     };
                     productRepository.Update(product);
                 }
                 else
                 {
+                    string[] sizes_Array = productVM.Sizes_Array ?? new string[0];
                     var product = new Product
                     {
                         Id = id,
@@ -142,8 +152,8 @@ namespace shokhov_shop.Controllers
                         Image2 = editProduct.Image2,
                         Image3 = editProduct.Image3,
                         Image4 = editProduct.Image4,
-                        Image5 = editProduct.Image5
-                       
+                        Image5 = editProduct.Image5,
+                        Sizes = string.Join(",", sizes_Array)
                     };
                     productRepository.Update(product);
                 }
