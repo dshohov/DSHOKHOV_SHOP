@@ -5,7 +5,8 @@ namespace shokhov_shop.Interfaces
     public interface IOrderRepository
     {
         List<Set_Product> GetSet_Products(Order order);
-        Order Search_Order_Id (Order order);
+        IEnumerable<Order> Get_isAproved_Orders();
+        Order Search_Order_Id (int id);
         Order Search_Order_User_Not_Confirm(AppUser user);
         decimal TotalPrice(Order order);
         void Confirm_Order (Order order);

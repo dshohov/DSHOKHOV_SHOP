@@ -1,0 +1,82 @@
+﻿@using System.Security.Claims
+@using shokhov_shop.Models;
+@model IEnumerable<Order>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    @if (!User.IsInRole("User"))
+    {
+        <div class="container">
+
+        <br />
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-primary">Замовлення</h2>
+            </div>
+        </div>
+        <a asp-action="Check_Order" asp-controller="Orders" class="btn btn-info text-white" asp-route-varible="3">Не підтверджені замовлення</a>
+        <a asp-action="Check_Order" asp-controller="Orders" class="btn btn-primary text-white" asp-route-varible="1">Замовлення на відправку</a>
+        <a asp-action="Check_Order" asp-controller="Orders" class="btn btn-secondary text-white" asp-route-varible="2">Відправлені Замовлення</a>
+        <div class="p-4 border rounded">
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Користувач
+                        </th>
+                        <th>
+                            Телефон
+                        </th>
+                        <th>
+                            Фінальна ціна
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Full_Name
+                            </td>
+                            <td>
+                                @item.Telefon
+                            </td>
+                            <td>
+                                @item.Total_Price
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <form asp-action="Delete" asp-controller="Support" asp-route-messageId="@item.Id">
+                                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info text-white">
+                                            Подивитися
+                                        </a>
+                                            @if(item.Confirmed_Admin == false)
+                                            {
+                                                <a asp-action="Confirmed_Admin" asp-route-id="@item.Id" class="btn btn-info text-white">Підтвердити</a>
+                                            }
+                                            @if(item.Confirmed_Admin == true && item.Completed == false){
+                                                <a asp-action="Completed" asp-route-id="@item.Id" class="btn btn-info text-white">Підтвердити</a>
+                                            }
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this?')"
+                                                        class="btn btn-danger">
+                                            Видалити
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+        </div>
+    }
+}

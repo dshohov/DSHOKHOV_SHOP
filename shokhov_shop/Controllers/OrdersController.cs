@@ -50,6 +50,8 @@ namespace shokhov_shop.Controllers
             old_order.Set_Products = _orderRepository.GetSet_Products(old_order);
             old_order.Total_Price = _orderRepository.TotalPrice(old_order);
             old_order.Is_Approved = true;
+            old_order.Completed = false;
+            old_order.Confirmed_Admin = false;
             _orderRepository.Update(old_order);
             return View();
         }
@@ -73,7 +75,8 @@ namespace shokhov_shop.Controllers
                 order = new Order()
                 {
                     User = user,
-                    Is_Approved = false
+                    Is_Approved = false,
+                    
                 
                 };
                 _orderRepository.Add(order);
@@ -92,6 +95,49 @@ namespace shokhov_shop.Controllers
             ViewBag.Message = TempData["MyModel"] as string;
             TempData.Remove("MyModel");
             return View();
+        }
+
+        public IActionResult Check_Order(int? varible)
+        {
+            var orders = _orderRepository.Get_isAproved_Orders();
+            if(varible == 1)
+            {
+                return View(orders.Where(i=>i.Completed == false && i.Confirmed_Admin == true).ToList());
+            }
+            if(varible == 2)
+            {
+                return View(orders.Where(i=>i.Completed == true && i.Confirmed_Admin == true).ToList());
+            }
+            
+
+            return View(orders.Where(i=>i.Confirmed_Admin == false).ToList());
+        }
+
+        public IActionResult Confirmed_Admin(int id)
+        {
+            var order = _orderRepository.Search_Order_Id(id);
+            order.Confirmed_Admin = true;
+            _orderRepository.Update(order);
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+        public IActionResult Completed(int id)
+        {
+            var order = _orderRepository.Search_Order_Id(id);
+            order.Completed = true;
+            _orderRepository.Update(order);
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+        public IActionResult Detail(int id)
+        {
+            var order = _orderRepository.Search_Order_Id(id);
+            if (order == null || _orderRepository.GetSet_Products(order).Count() == 0)
+            {
+                TempData["MyModel"] = "Вибачте але зараз ваша корзина пуста, додайте продукти та повертайтеся для оформеня замовлення.";
+                return RedirectToAction("Error_Order", "Orders");
+            }
+            order.Set_Products = _orderRepository.GetSet_Products(order);
+            order.Total_Price = _orderRepository.TotalPrice(order);
+            return View(order);
         }
     }
 }

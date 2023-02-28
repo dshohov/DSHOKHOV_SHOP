@@ -38,6 +38,11 @@ namespace shokhov_shop.Repository
             return _context.Set_Products.Where(i => i.Order == order).ToList();
         }
 
+        public IEnumerable<Order> Get_isAproved_Orders()
+        {
+            return _context.Orders.Where(i => i.Is_Approved == true).ToList();
+        }
+
         public bool Remove_Product(Order order,int id)
         {
             var set_Product = _context.Set_Products.FirstOrDefault(p => p.Id==id);
@@ -52,9 +57,9 @@ namespace shokhov_shop.Repository
             return saved > 0 ? true : false;
         }
 
-        public Order Search_Order_Id(Order order)
+        public Order Search_Order_Id(int id)
         {
-            return _context.Orders.Where(i => i.Id == order.Id).FirstOrDefault();
+            return _context.Orders.Where(i => i.Id == id).FirstOrDefault();
         }
 
         public Order Search_Order_User_Not_Confirm(AppUser user)

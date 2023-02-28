@@ -12,5 +12,7 @@
         public bool Is_Approved { get; set; }
         public string? Comment { get; set; }
         public decimal? Total_Price { get; set; }
+        public bool Confirmed_Admin { get; set; }
+        public bool Completed { get; set; }
     }
 }
