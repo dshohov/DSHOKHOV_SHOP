@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shokhov_shop.Data;
 
@@ -11,9 +12,11 @@ using shokhov_shop.Data;
 namespace shokhovshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230226115824_UpdateOrder")]
+    partial class UpdateOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,10 +293,7 @@ namespace shokhovshop.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Full_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Is_Approved")
+                    b.Property<bool?>("Is_Approved")
                         .HasColumnType("bit");
 
                     b.Property<int?>("Number_Post")
@@ -382,22 +382,14 @@ namespace shokhovshop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Id_Product")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("Set_Size")
                         .IsRequired()
@@ -407,7 +399,9 @@ namespace shokhovshop.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Set_Products");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Set_Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -464,7 +458,7 @@ namespace shokhovshop.Migrations
             modelBuilder.Entity("shokhov_shop.Models.Order", b =>
                 {
                     b.HasOne("shokhov_shop.Models.AppUser", "User")
-                        .WithMany()
+                        .WithMany("OrderList")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -474,13 +468,22 @@ namespace shokhovshop.Migrations
 
             modelBuilder.Entity("shokhov_shop.Models.Set_Product", b =>
                 {
-                    b.HasOne("shokhov_shop.Models.Order", "Order")
+                    b.HasOne("shokhov_shop.Models.Order", null)
                         .WithMany("Set_Products")
-                        .HasForeignKey("OrderId")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("shokhov_shop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Order");
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("shokhov_shop.Models.AppUser", b =>
+                {
+                    b.Navigation("OrderList");
                 });
 
             modelBuilder.Entity("shokhov_shop.Models.Order", b =>

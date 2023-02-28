@@ -66,10 +66,10 @@
                         {
                             <li><a asp-action="Login" asp-controller="Account" class="underline-one">Вхід</a></li>
                         }
-                        
-                        <li><a href="#" class="underline-one">Корзина</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li><a asp-controller="Orders" asp-action="Index" class="underline-one">Корзина</a></li>
+
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
                                 <li><a asp-action="ChatHistory" asp-controller="Support" class="underline-one">Підтримка</a></li>   
@@ -78,9 +78,11 @@
                             {
                                 <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
                             }
+
                         }
                         else
                         {
+                                <li><a asp-controller="Orders" asp-action="Error_Order" class="underline-one">Корзина</a></li>
                                 <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
                         }
 

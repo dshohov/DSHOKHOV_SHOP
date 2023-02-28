@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using shokhov_shop.Intefaces;
+using shokhov_shop.ViewModels;
 
 namespace shokhov_shop.Controllers
 {
@@ -14,7 +15,8 @@ namespace shokhov_shop.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var product = await productRepository.GetProduct(id);
-            return View(product);
+            ProductViewModel productViewModel = new ProductViewModel() { Product = product };
+            return View(productViewModel);
         }
     }
 }

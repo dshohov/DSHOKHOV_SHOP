@@ -19,6 +19,7 @@ builder.Services.AddCors();//attack type CSRF prevention.
 builder.Services.AddAntiforgery();//включить поддержку анти-CSRF
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddScoped<IChatHistoryRepository, ChatHistoryRepository>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));

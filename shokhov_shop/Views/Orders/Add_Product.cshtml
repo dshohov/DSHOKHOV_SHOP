@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Order
+
+<h1>@Model.User.Email</h1>
+<hi>@Model.User.UserName</hi>
+@foreach(Set_Product item in Model.Set_Products)
+{
+    <h1>@item.Id_Product</h1>
+    <h1>@item.Set_Size</h1>
+    <br>
+}

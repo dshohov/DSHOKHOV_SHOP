@@ -1,31 +1,40 @@
-﻿ @model Product
+﻿@using shokhov_shop.ViewModels
+@model ProductViewModel
 
 <link rel="stylesheet" href="~/css/offer.css">
 <div class="foto_price">
     <div class="foto">
-        <img class="big_img" src="@Model.Image" alt="">
-        <img class="big_img" src="@Model.Image2" alt="">
-        <img class="small_img" src="@Model.Image3" alt="">
-        <img class="small_img" src="@Model.Image4" alt="">
-        <img class="small_img" src="@Model.Image5" alt="">
+        <img class="big_img" src="@Model.Product.Image" alt="">
+        <img class="big_img" src="@Model.Product.Image2" alt="">
+        <img class="small_img" src="@Model.Product.Image3" alt="">
+        <img class="small_img" src="@Model.Product.Image4" alt="">
+        <img class="small_img" src="@Model.Product.Image5" alt="">
     </div>
     <div class="price">
-        <h3>@Model.Sub_category</h3>
-        <h2 class="f_left">@Model.Name_For_User</h2><h2 class="f_right">@Model.Price $</h2>
-        <h3>id - @Model.Id</h3>
+        <h3>@Model.Product.Sub_category</h3>
+        <h2 class="f_left">@Model.Product.Name_For_User</h2><h2 class="f_right">@Model.Product.Price $</h2>
+        <h3>id - @Model.Product.Id</h3>
         <h4>Колір - білий</h4>
         <h5>Розміри</h5>
-        <section class="vertical-menu">
-            @foreach(string item in  Model.Sizes.Split(","))
-            {
-                <option value="@item">@item</option>
-            }
-        </section>
-        <button>Додати до кошика</button>
+        <form asp-action="Add_Product" asp-controller="Orders" enctype="multipart/form-data" method="post">
+             
+            <input type="hidden" value="@Model.Product.Id" asp-for="@Model.Set_Product.Id_Product" />
+            <section class="vertical-menu">            
+                <select asp-for="@Model.Set_Product.Set_Size" class="form-control">
+                    @foreach(string item in  Model.Product.Sizes.Split(","))
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>            
+            </section>
+            <button>Додати до кошика</button>
+        </form>
+        
+        <a asp-action="Add_Product" asp-controller="Orders">Test</a>
     </div>
 </div>
 <div class="description">
     <h2>ОПИС</h2>
     <h3>Матеріал - 100 % Замшева шкіра </h3>
-    <h3>@Model.Description</h3>
+    <h3>@Model.Product.Description</h3>
 </div>
