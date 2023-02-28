@@ -165,15 +165,11 @@ namespace shokhov_shop.Controllers
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
-                    if(registerViewModel.RoleSelected != null && registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "SuperAdmin")
+                    if(registerViewModel.Email == "dshohov@gmail.com")
                     {
                         await _userManager.AddToRoleAsync(user, "SuperAdmin");
                     }
-                    if (registerViewModel.RoleSelected != null && registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "Admin")
-                    {
-                        await _userManager.AddToRoleAsync(user, "Admin");
-                    }
-                    if(registerViewModel.RoleSelected != null && registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "User")
+                    else
                     {
                         await _userManager.AddToRoleAsync(user, "User");
                     }

@@ -17,9 +17,7 @@
             <input asp-for="ConfirmPassword"  placeholder="ConfirmPassword" required="">
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
-                <select asp-for="RoleSelected" asp-items="@Model.RoleList" >
-                    <option disabled selected>--Select Role--</option>
-                </select>
+
             <button class="but" type="submit">Login</button>
             
         </form>
