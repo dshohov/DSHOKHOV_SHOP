@@ -9,27 +9,27 @@ namespace shokhov_shop.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository categoryRepository;
-        private readonly IPhotoService photoService;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IPhotoService _photoService;
         public CategoryController(ICategoryRepository categoryRepository, IPhotoService photoService)
         {
-            this.categoryRepository = categoryRepository;
-            this.photoService = photoService;
+            _categoryRepository = categoryRepository;
+            _photoService = photoService;
         }
 
         public async Task<IActionResult> Woman()
         {
-            IEnumerable<Category> categories = await categoryRepository.GetCategory(People.Women);
+            IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Women);
             return View(categories);
         }
         public async Task<IActionResult> Man()
         {
-            IEnumerable<Category> categories = await categoryRepository.GetCategory(People.Men);
+            IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Men);
             return View(categories);
         }
         public async Task<IActionResult> Child()
         {
-            IEnumerable<Category> categories = await categoryRepository.GetCategory(People.Child);
+            IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Child);
             return View(categories);
         }
 
@@ -40,9 +40,9 @@ namespace shokhov_shop.Controllers
             
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateCategoryViewModel categoryVM)
+        public async Task<IActionResult> Create(CreateOrEditCategoryViewModel categoryVM)
         {
-            var result = await photoService.AddPhotoAsync(categoryVM.Image1);
+            var result = await _photoService.AddPhotoAsync(categoryVM.Image);
             var category = new Category
             {
                 Name_For_User = categoryVM.Name_For_User,
@@ -50,14 +50,14 @@ namespace shokhov_shop.Controllers
                 People = categoryVM.People,
                 Image = result.Url.ToString(),
             };
-            categoryRepository.Add(category);
+            _categoryRepository.Add(category);
             return RedirectToAction("Woman");
         }
         
         public async Task<IActionResult> Edit(int id)
         {
-            var category = await categoryRepository.GetByIdAsync(id);
-            var categoryVM = new EditCategoryViewModel
+            var category = await _categoryRepository.GetByIdAsync(id);
+            var categoryVM = new CreateOrEditCategoryViewModel
             {
                 Name_For_User = category.Name_For_User,
                 Description = category.Description,
@@ -69,15 +69,15 @@ namespace shokhov_shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,EditCategoryViewModel categoryVM)
+        public async Task<IActionResult> Edit(int id,CreateOrEditCategoryViewModel categoryVM)
         {
-            var editCategory = await categoryRepository.GetByIdAsyncNoTracking(id);
+            var editCategory = await _categoryRepository.GetByIdAsyncNoTracking(id);
 
             if(editCategory != null)
             {
                 try
                 {
-                    await photoService.DeletePhotoAsync(editCategory.Image);
+                    await _photoService.DeletePhotoAsync(editCategory.Image);
                 }
                 catch(Exception ex)
                 {
@@ -86,7 +86,7 @@ namespace shokhov_shop.Controllers
                 }
                 if(categoryVM.Image != null)
                 {
-                    var photoResult = await photoService.AddPhotoAsync(categoryVM.Image);
+                    var photoResult = await _photoService.AddPhotoAsync(categoryVM.Image);
 
                     var category = new Category
                     {
@@ -96,7 +96,7 @@ namespace shokhov_shop.Controllers
                         People = categoryVM.People,
                         Image = photoResult.Url.ToString()
                     };
-                    categoryRepository.Update(category);
+                    _categoryRepository.Update(category);
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace shokhov_shop.Controllers
                         People = categoryVM.People,
                         Image = editCategory.Image
                     };
-                    categoryRepository.Update(category);
+                    _categoryRepository.Update(category);
                 }
 
                 switch ((categoryVM.People)

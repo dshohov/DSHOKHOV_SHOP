@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CloudinaryDotNet.Actions;
+using Microsoft.EntityFrameworkCore;
 using shokhov_shop.Data;
 using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
+using shokhov_shop.ViewModels;
 
 namespace shokhov_shop.Repository
 {
@@ -53,6 +55,7 @@ namespace shokhov_shop.Repository
             this.context.Update(category);
             return Save();
         }
+
 
     }
 }

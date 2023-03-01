@@ -42,16 +42,7 @@ namespace shokhov_shop.Controllers
         {
             AppUser user = _userManager.GetUserAsync(User).Result;
             var old_order = _orderRepository.Search_Order_User_Not_Confirm(user);
-            old_order.Number_Post = order.Number_Post;
-            old_order.Comment = order.Comment;
-            old_order.Full_Name = order.Full_Name;
-            old_order.Telefon = order.Telefon;
-            old_order.City = order.City;
-            old_order.Set_Products = _orderRepository.GetSet_Products(old_order);
-            old_order.Total_Price = _orderRepository.TotalPrice(old_order);
-            old_order.Is_Approved = true;
-            old_order.Completed = false;
-            old_order.Confirmed_Admin = false;
+            old_order = _orderRepository.Update_Old_Order(old_order, order);
             _orderRepository.Update(old_order);
             return View();
         }

@@ -49,7 +49,7 @@
                     @if(User.Identity.IsAuthenticated){
                         @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                         {
-                            <a asp-action="Edit" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Edit</button></a>    
+                            <a asp-action="Edit" asp-controller="Offers" asp-route-id="@item.Id"><button>Edit</button></a>    
                                 
                         }
                     }

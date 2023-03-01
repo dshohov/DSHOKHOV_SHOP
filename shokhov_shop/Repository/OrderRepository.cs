@@ -77,5 +77,20 @@ namespace shokhov_shop.Repository
             _context.Update(order);
             return Save();
         }
+
+        public Order Update_Old_Order(Order old_order, Order order)
+        {
+            old_order.Number_Post = order.Number_Post;
+            old_order.Comment = order.Comment;
+            old_order.Full_Name = order.Full_Name;
+            old_order.Telefon = order.Telefon;
+            old_order.City = order.City;
+            old_order.Set_Products = GetSet_Products(old_order);
+            old_order.Total_Price = TotalPrice(old_order);
+            old_order.Is_Approved = true;
+            old_order.Completed = false;
+            old_order.Confirmed_Admin = false;
+            return old_order;
+        }
     }
 }

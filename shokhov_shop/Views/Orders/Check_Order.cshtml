@@ -13,8 +13,17 @@
         <div class="row">
             <div class="col-6">
                 <h2 class="text-primary">Замовлення</h2>
+                <div>
+                              <form asp-action="Detail" asp-controller="Orders">
+                                <h5>Пошук замовлення за ID  </h5>
+                                <input type="text" name="id">
+                                <button type="submit">Send</button>
+                                <br>
+                              </form>
+                            </div>
             </div>
         </div>
+        <br>
         <a asp-action="Check_Order" asp-controller="Orders" class="btn btn-info text-white" asp-route-varible="3">Не підтверджені замовлення</a>
         <a asp-action="Check_Order" asp-controller="Orders" class="btn btn-primary text-white" asp-route-varible="1">Замовлення на відправку</a>
         <a asp-action="Check_Order" asp-controller="Orders" class="btn btn-secondary text-white" asp-route-varible="2">Відправлені Замовлення</a>

@@ -21,7 +21,7 @@
                     </div>
                     <h2>@item.Name_For_User</h2>
                     <h2>@item.Price $</h2>      
-                    <a asp-action="Edit" asp-controller="Offers" asp-route-id="@Model.First().Id"><button>Edit</button></a>
+                    <a asp-action="Edit" asp-controller="Offers" asp-route-id="@item.Id"><button>Edit</button></a>
                 </li>
             }
         </ul>

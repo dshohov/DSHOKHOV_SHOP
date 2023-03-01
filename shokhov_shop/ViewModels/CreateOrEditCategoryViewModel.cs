@@ -2,7 +2,7 @@
 
 namespace shokhov_shop.ViewModels
 {
-    public class EditCategoryViewModel
+    public class CreateOrEditCategoryViewModel
     {
         public int Id { get; set; }
         public string Name_For_User { get; set; }
