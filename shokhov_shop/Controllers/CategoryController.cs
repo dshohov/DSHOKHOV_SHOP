@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using shokhov_shop.Data;
 using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
@@ -16,17 +17,38 @@ namespace shokhov_shop.Controllers
             _categoryRepository = categoryRepository;
             _photoService = photoService;
         }
-
+        
         public async Task<IActionResult> Woman()
         {
-            IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Women);
-            return View(categories);
+            // IMemoryCache Simple
+            IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+            if(cache.Get<IEnumerable<Category>>("myKey") == null)
+            {
+                IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Women);
+
+                cache.Set("myKey", categories, TimeSpan.FromMinutes(20));
+            }
+            
+
+            var cache_category = cache.Get<IEnumerable<Category>>("myKey");
+            return View(cache_category);
         }
+
         public async Task<IActionResult> Man()
         {
-            IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Men);
+            //IMemoryCache Normal
+            IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+
+            IEnumerable<Category> categories = await cache.GetOrCreate("myKey", async entry =>
+            {
+                IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Men);
+                return categories;
+            });
+            cache.Set("myKey", categories, TimeSpan.FromMinutes(20));
             return View(categories);
         }
+        //HttpCache
+        [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Client)]
         public async Task<IActionResult> Child()
         {
             IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Child);
