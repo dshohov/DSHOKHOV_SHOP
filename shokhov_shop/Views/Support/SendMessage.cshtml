@@ -2,18 +2,16 @@
 @using System.Security.Claims
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
-
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 <link rel="stylesheet" href="~/css/support.css">
 
     <div class="main">  	
 <input type="checkbox"  id="chk" aria-hidden="true">
 <div class="signup"  >
         <form>
-            <label for="chk" aria-hidden="true">Підтримка</label>
+            <label for="chk" aria-hidden="true">@localizer["Підтримка"]</label>
             <div class="sub_text">
-            <p>Надішліть нам ваше повідомлення, ми його обробимо та зв'яжемося з вами через єлктрону скриньку. 
-                Тут ви можете написати відгук, розповсти що вам подобається або що потрібно вдосконалити.
-                Ваша думка для нас дуже важлива.</p>
+            <p>@localizer["Надішліть нам ваше повідомлення, ми його обробимо та зв'яжемося з вами через єлктрону скриньку. Тут ви можете написати відгук, розповсти що вам подобається або що потрібно вдосконалити. Ваша думка для нас дуже важлива."]</p>
             </div>
             @if (User.Identity.IsAuthenticated)
             {
@@ -21,12 +19,12 @@
                     @if(!User.IsInRole("SuperAdmin"))
                     {
                         <textarea id="message" ></textarea>
-                        <button id="sendmessage">Відправити</button>
+                        <button id="sendmessage">@localizer["Відправити"]</button>
                     }
             }
             else
             {
-                <h2 id="log_sig"><b>Для в відправки повідомлення зайдіть в свій акаунт або зареєструйтесь.</b</h2> 
+                <h2 id="log_sig"><b>@localizer["Для в відправки повідомлення зайдіть в свій акаунт або зареєструйтесь."]</b</h2> 
             }
         </form>
     </div>        

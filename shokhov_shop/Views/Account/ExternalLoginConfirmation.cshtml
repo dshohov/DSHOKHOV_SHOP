@@ -1,39 +1,6 @@
 ﻿@using shokhov_shop.ViewModels
 @model ExternalLoginViewModel
-
-@*<h1 class="text-info">Register</h1>
-<h3>Associate your @ViewData["ProviderDisplayName"] account.</h3>
-
-<form asp-controller="Account" asp-action="ExternalLoginConfirmation" method="post" role="form" asp-route-returnurl="@ViewData["ReturnUrl"]">
-    <h4>Association Form</h4>
-    <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <p>
-        You've successfully authenticated with <strong>@ViewData["ProviderDisplayName"]</strong>.
-        Please enter a user name for this site below and click the Register button to finish
-        logging in.
-    </p>
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2"></label>
-        <div class="col-md-10">
-            <input asp-for="Email" readonly class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Name" class="col-md-2"></label>
-        <div class="col-md-10">
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-success form-control">Register</button>
-        </div>
-    </div>
-</form>*@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 
 <link rel="stylesheet" href="~/css/login.css">
@@ -42,19 +9,20 @@
     <div class="signup">
         <form asp-controller="Account" asp-action="ExternalLoginConfirmation" method="post" role="form" asp-route-returnurl="@ViewData["ReturnUrl"]">
 
-            <label for="chk" aria-hidden="true">Login</label>
+            <label for="chk" aria-hidden="true">@localizer["Логін"]</label>
             <input asp-for="Email" readonly class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
+            <label for="chk" aria-hidden="true">@localizer["Ім'я користувача"]</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
-            <button class="but" type="submit">Login</button>
+            <button class="but" type="submit">@localizer["Відправити"]</button>
            
         </form>
         
     </div>
     <div class="login">
         <form>
-            <label for="chk" aria-hidden="true"><a style="text-decoration:none" asp-controller="Category" asp-action="Woman">Sign up</a></label>
+            <label for="chk" aria-hidden="true"><a style="text-decoration:none" asp-controller="Category" asp-action="Woman">@localizer["На головну"]</a></label>
             
         </form>
     </div>

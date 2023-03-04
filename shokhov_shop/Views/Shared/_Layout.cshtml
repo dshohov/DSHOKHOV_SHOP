@@ -1,9 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
-
-
+@{
+    var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+    
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,9 +28,9 @@
             <div class="my_nav">
                 <div class="nav_left">
                     <ul>
-                        <li><a asp-controller="Category" asp-action="Woman" class="underline-one">Жіноче</a></li>
-                        <li><a asp-controller="Category" asp-action="Man" class="underline-one">Чоловіче</a></li>
-                        <li><a asp-controller="Category" asp-action="Child" class="underline-one">Дитяче</a></li>
+                        <li><a asp-controller="Category" asp-action="Woman" class="underline-one">@localizer["Жіноче"]</a></li>
+                        <li><a asp-controller="Category" asp-action="Man" class="underline-one">@localizer["Чоловіче"]</a></li>
+                        <li><a asp-controller="Category" asp-action="Child" class="underline-one">@localizer["Дитяче"]</a></li>
                         <li><div class="image-container">
                             <img src="~/img/search.png" alt="Image" style="width: 14px; height:14px;">
                             <div class="form-container">
@@ -58,13 +61,13 @@
                             <li>
                                 <form id="logoutForm" method="post" asp-controller="Account" asp-action="LogOff">
 
-                                    <button type="submit" style="all: unset;" ><a class="underline-one">Logout</a></button>
+                                    <button type="submit" style="all: unset;" ><a class="underline-one">@localizer["Вихід"]</a></button>
                                 </form>
                             </li>
                         }
                         else
                         {
-                            <li><a asp-action="Login" asp-controller="Account" class="underline-one">Вхід</a></li>
+                            <li><a asp-action="Login" asp-controller="Account" class="underline-one">@localizer["Вхід"]</a></li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -72,38 +75,36 @@
 
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
-                                <li><a asp-controller="Orders" asp-action="Check_Order" class="underline-one">Замовлення</a></li>
-                                <li><a asp-action="ChatHistory" asp-controller="Support" class="underline-one">Повідомлення</a></li>   
+                                <li><a asp-controller="Orders" asp-action="Check_Order" class="underline-one">@localizer["Замовлення"]</a></li>
+                                <li><a asp-action="ChatHistory" asp-controller="Support" class="underline-one">@localizer["Повідомлення"]</a></li>   
                             }
                             else
                             {
-                                <li><a asp-controller="Orders" asp-action="Index" class="underline-one">Корзина</a></li>
-                                <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
+                                <li><a asp-controller="Orders" asp-action="Index" class="underline-one">@localizer["Корзина"]</a></li>
+                                <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">@localizer["Підтримка"]</a></li>
                             }
 
                         }
                         else
                         {
-                                <li><a asp-controller="Orders" asp-action="Error_Order" class="underline-one">Корзина</a></li>
-                                <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">Підтримка</a></li>
+                                <li><a asp-controller="Orders" asp-action="Error_Order" class="underline-one">@localizer["Корзина"]</a></li>
+                                <li><a asp-action="SendMessage" asp-controller="Support" class="underline-one">@localizer["Підтримка"]</a></li>
                         }
 
                     </ul>
                 </div>
-                <div>
-
-
-                    <img src="~/img/languadge.png" alt="ava_hand_no_foto.png" id="click_img1" style="position: absolute; margin: 30px 0 0 1186px;">
-
-                    <div id="blockImg1">
-
-                    <div><a href="#"><img class="click_img1" id="src" src="~/img/languadge.png" ></a></div>
-
-                    <div><a href="#"><img class="click_img1" id="src1" src="~/img/uk.png"></a></div>
-
-                    </div>
-
-   
+                <div> 
+                    <form id="culture-form" asp-action="CultureManager" asp-controller="Home" method="post" class="form-inline" style="position: absolute;width:50px; margin: 20px 0 0 1186px;">
+                        <select name="culture" class="form-control" asp-for="@culture.RequestCulture.UICulture.Name" onchange="submitForm()">
+                            <option>ua</option>
+                            <option>en</option>
+                        </select>
+                    </form>
+                    <script>
+                    function submitForm() {
+                        document.getElementById("culture-form").submit();
+                    }
+                    </script>
                 </div>
             </div>
             
@@ -118,8 +119,8 @@
             <div class="my_footer">
                 <ul>
                     <li>© 2022 DSHOKHOV_SHOP</li>
-                    <li>Все права защищены</li>
-                    <li>Политика конфиденциальности и файлов cookie</li>
+                    <li>@localizer["Всі права захищені"]</li>
+                    <li>@localizer["Політика конфіденційності та файлів cookie"]</li>
                 </ul>
             </div>
         </footer>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using shokhov_shop.Services;
 using shokhov_shop.Data;
 using shokhov_shop.Interfaces;
+using Microsoft.AspNetCore.Localization;
 
 namespace shokhov_shop.Controllers
 {
@@ -31,7 +32,13 @@ namespace shokhov_shop.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult CultureManager(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

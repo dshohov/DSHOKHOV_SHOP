@@ -5,19 +5,31 @@ using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
 using shokhov_shop.ViewModels;
+using System.Collections;
+using System.Resources;
+using Google.Cloud.Translation.V2;
+using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
+using shokhov_shop.Helpers;
+using Microsoft.Extensions.Options;
+using shokhov_shop.Services;
+using Microsoft.AspNetCore.Mvc.Localization;
 
 namespace shokhov_shop.Controllers
 {
     public class CategoryController : Controller
     {
+        private readonly IHtmlLocalizer<HomeController> _localizer;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IPhotoService _photoService;
-        public CategoryController(ICategoryRepository categoryRepository, IPhotoService photoService)
+        
+        public CategoryController(ICategoryRepository categoryRepository, IPhotoService photoService, IHtmlLocalizer<HomeController> localizer)
         {
             _categoryRepository = categoryRepository;
             _photoService = photoService;
+            _localizer = localizer;
         }
-        
+
         public async Task<IActionResult> Woman()
         {
             // IMemoryCache Simple
@@ -25,7 +37,6 @@ namespace shokhov_shop.Controllers
             if(cache.Get<IEnumerable<Category>>("myKey") == null)
             {
                 IEnumerable<Category> categories = await _categoryRepository.GetCategory(People.Women);
-
                 cache.Set("myKey", categories, TimeSpan.FromMinutes(20));
             }
             
@@ -72,6 +83,10 @@ namespace shokhov_shop.Controllers
                 People = categoryVM.People,
                 Image = result.Url.ToString(),
             };
+            var word = await _categoryRepository.TranslateWordAsync(category.Name_For_User);
+            _categoryRepository.WriteToResources(category.Name_For_User, word,category.People);
+            word = await _categoryRepository.TranslateWordAsync(category.Description);
+            _categoryRepository.WriteToResources(category.Description, word, category.People);
             _categoryRepository.Add(category);
             return RedirectToAction("Woman");
         }
@@ -118,6 +133,10 @@ namespace shokhov_shop.Controllers
                         People = categoryVM.People,
                         Image = photoResult.Url.ToString()
                     };
+                    var word = await _categoryRepository.TranslateWordAsync(category.Name_For_User);
+                    _categoryRepository.WriteToResources(category.Name_For_User, word, category.People);
+                    word = await _categoryRepository.TranslateWordAsync(category.Description);
+                    _categoryRepository.WriteToResources(category.Description, word, category.People);
                     _categoryRepository.Update(category);
                 }
                 else
@@ -130,6 +149,10 @@ namespace shokhov_shop.Controllers
                         People = categoryVM.People,
                         Image = editCategory.Image
                     };
+                    var word = await _categoryRepository.TranslateWordAsync(category.Name_For_User);
+                    _categoryRepository.WriteToResources(category.Name_For_User, word, category.People);
+                    word = await _categoryRepository.TranslateWordAsync(category.Description);
+                    _categoryRepository.WriteToResources(category.Description, word, category.People);
                     _categoryRepository.Update(category);
                 }
 
@@ -149,6 +172,16 @@ namespace shokhov_shop.Controllers
                 return RedirectToAction("Woman");
             }
             return View(categoryVM);
+        }
+        public async Task<IActionResult> Test()
+        {
+            Category cat = await _categoryRepository.GetByIdAsync(1);
+
+            var word = await _categoryRepository.TranslateWordAsync(cat.Name_For_User);
+            _categoryRepository.WriteToResources(cat.Name_For_User, word, cat.People);
+            
+            
+            return View();
         }
     }
 }

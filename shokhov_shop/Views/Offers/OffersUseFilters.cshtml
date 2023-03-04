@@ -1,4 +1,4 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @model IEnumerable<Product>
 <link rel="stylesheet" href="/css/ofers_css.css">
 <!--Offers example-->
@@ -6,7 +6,7 @@
     <div class="ofers_nav">
         <h1>@ViewBag.Messege</h1>
         <ul>
-            <li><a asp-action="Offers" asp-controller="Offers" asp-route-id="@Model.First().Category_id">Усі</a></li>
+            <li><a asp-action="Offers" asp-controller="Offers" asp-route-id="@Model.First().Category_id">@localizer["Усі"]</a></li>
         </ul>
     </div>
     <div class="ofers">
@@ -16,7 +16,7 @@
                 <li>
                     <div style="background-image: url(@item.Image)" class="holder">
                         <div class="block">
-                            <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">Деталі</a>
+                            <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">@localizer["Деталі"]</a>
                         </div>
                     </div>
                     <h2>@item.Name_For_User</h2>

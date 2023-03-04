@@ -1,21 +1,23 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
     ViewData["Title"] = "Woman Category";
 }
 @model IEnumerable<Category>
 <link rel="stylesheet" href="~/css/exaple_categories.css">
+
 <!--Example categories page-->
 <div class="context">
     <div class="sales" style="background-image: url(@Model.First().Image);">
         <ul>
-            <li class="li_first_sales">@Model.First().Name_For_User</li>
-            <li class="li_second_sales">@Model.First().Description</li>
-            <li class="li_third_sales_div"><a asp-route-id="@Model.First().Id" asp-action="Offers" asp-controller="Offers"  class="li_third_sales_a"><div class="li_third_sales">Подивитись</div></a></li>
+            <li class="li_first_sales">@localizer[Model.First().Name_For_User]</li>
+            <li class="li_second_sales">@localizer[Model.First().Description]</li>
+            <li class="li_third_sales_div"><a asp-route-id="@Model.First().Id" asp-action="Offers" asp-controller="Offers"  class="li_third_sales_a"><div class="li_third_sales">@localizer["Подивитись"]</div></a></li>
         </ul>
         @if (User.Identity.IsAuthenticated)
         {
             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
             {
-                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.First().Id"><button>Edit</button></a>
+                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.First().Id"><button>@localizer["Редагувати"]</button></a>
             }
         }
     </div>
@@ -25,13 +27,13 @@
                 <td colspan="2"  style="background-image: url(@Model.ElementAt(1).Image);">
                     
                     <div class="category_new">
-                        <h3>@Model.ElementAt(1).Name_For_User</h3>
-                        <a asp-route-id="@Model.ElementAt(1).Id" asp-action="Offers" asp-controller="Offers">@Model.ElementAt(1).Description</a>
+                        <h3>@localizer[Model.ElementAt(1).Name_For_User]</h3>
+                        <a asp-route-id="@Model.ElementAt(1).Id" asp-action="Offers" asp-controller="Offers">@localizer[Model.ElementAt(1).Description]</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
-                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(1).Id"><button>Edit</button></a>
+                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(1).Id"><button>@localizer["Редагувати"]</button></a>
                             }
                         }
                     </div>
@@ -39,13 +41,13 @@
                 </td>
                 <td  style="background-image: url(@Model.ElementAt(2).Image);">
                     <div class="category">
-                        <h3>@Model.ElementAt(2).Name_For_User</h3>
-                        <a asp-route-id="@Model.ElementAt(2).Id" asp-action="Offers" asp-controller="Offers">@Model.ElementAt(2).Description</a>
+                        <h3>@localizer[Model.ElementAt(2).Name_For_User]</h3>
+                        <a asp-route-id="@Model.ElementAt(2).Id" asp-action="Offers" asp-controller="Offers">@localizer[Model.ElementAt(2).Description]</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
-                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(2).Id"><button>Edit</button></a>
+                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(2).Id"><button>@localizer["Редагувати"]</button></a>
                             }
                         }
                     </div>
@@ -56,39 +58,39 @@
                 <tr>
                 <td  style="background-image: url(@Model.ElementAt(i).Image);">
                     <div class="category">
-                        <h3>@Model.ElementAt(i).Name_For_User</h3>
-                        <a asp-route-id="@Model.ElementAt(i).Id" asp-action="Offers" asp-controller="Offers">@Model.ElementAt(i).Description</a>
+                        <h3>@localizer[Model.ElementAt(i).Name_For_User]</h3>
+                        <a asp-route-id="@Model.ElementAt(i).Id" asp-action="Offers" asp-controller="Offers">@localizer[Model.ElementAt(i).Description]</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
-                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(i).Id"><button>Edit</button></a>
+                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(i).Id"><button>@localizer["Редагувати"]</button></a>
                             }
                         }
                     </div>
                 </td>
                 <td  style="background-image: url(@Model.ElementAt(i+1).Image);">
                     <div class="category">
-                        <h3>@Model.ElementAt(i+1).Name_For_User</h3>
-                        <a asp-route-id="@Model.ElementAt(i+1).Id" asp-action="Offers" asp-controller="Offers">@Model.ElementAt(i+1).Description</a>
+                        <h3>@localizer[Model.ElementAt(i+1).Name_For_User]</h3>
+                        <a asp-route-id="@Model.ElementAt(i+1).Id" asp-action="Offers" asp-controller="Offers">@localizer[Model.ElementAt(i+1).Description]</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
-                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(i+1).Id"><button>Edit</button></a>
+                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(i+1).Id"><button>@localizer["Редагувати"]</button></a>
                             }
                         }
                     </div>
                 </td>
                 <td  style="background-image: url(@Model.ElementAt(i+2).Image);">
                     <div class="category">
-                        <h3>@Model.ElementAt(i+2).Name_For_User</h3>
-                        <a asp-route-id="@Model.ElementAt(i+2).Id" asp-action="Offers" asp-controller="Offers">@Model.ElementAt(i+2).Description</a>
+                        <h3>@localizer[Model.ElementAt(i+2).Name_For_User]</h3>
+                        <a asp-route-id="@Model.ElementAt(i+2).Id" asp-action="Offers" asp-controller="Offers">@localizer[Model.ElementAt(i+2).Description]</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
-                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(i+2).Id"><button>Edit</button></a>
+                                <a asp-action="Edit" asp-controller="Category" asp-route-id="@Model.ElementAt(i+2).Id"><button>@localizer["Редагувати"]</button></a>
                             }
                         }
                     </div>

@@ -1,5 +1,6 @@
 ﻿@using shokhov_shop.ViewModels
 @model ProductViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 <link rel="stylesheet" href="~/css/offer.css">
 <div class="foto_price">
@@ -12,10 +13,9 @@
     </div>
     <div class="price">
         <h3>@Model.Product.Sub_category</h3>
-        <h2 class="f_left">@Model.Product.Name_For_User</h2><h2 class="f_right">@Model.Product.Price $</h2>
+        <h2 class="f_left">@Model.Product.Name_For_User</h2><h2 class="f_right">@Model.Product.Price .ГРН</h2>
         <h3>id - @Model.Product.Id</h3>
-        <h4>Колір - білий</h4>
-        <h5>Розміри</h5>
+        <h5>@localizer["Розміри"]</h5>
         <form asp-action="Add_Product" asp-controller="Orders" enctype="multipart/form-data" method="post">
              
             <input type="hidden" value="@Model.Product.Id" asp-for="@Model.Set_Product.Id_Product" />
@@ -27,12 +27,11 @@
                     }
                 </select>            
             </section>
-            <button>Додати до кошика</button>
+            <button>@localizer["Додати до кошика"]</button>
         </form>
     </div>
 </div>
 <div class="description">
-    <h2>ОПИС</h2>
-    <h3>Матеріал - 100 % Замшева шкіра </h3>
+    <h2>@localizer["ОПИС"]</h2>
     <h3>@Model.Product.Description</h3>
 </div>
