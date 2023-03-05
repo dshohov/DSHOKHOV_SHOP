@@ -12,7 +12,8 @@ namespace shokhov_shop.Intefaces
         Task<IEnumerable<Product>> GetAllProductInCategory(int id);
         Task<IEnumerable<Product>> UseFilters(string sub_category, int categoryId);
         string GetNameCategory(int id);
-
+        Task WriteToResources(string[] uaWord, string[] enWord, string[] path);
+        Task<string> TranslateWordAsync(string word);
         Task<Product> GetProduct(int id);
         Task<Product> Create_ProductAsync(CreateOrEditProductViewModel productVM);
         void Delete_All_Photo_Async(Product edit_Product);

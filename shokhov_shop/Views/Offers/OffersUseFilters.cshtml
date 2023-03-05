@@ -19,8 +19,8 @@
                             <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">@localizer["Деталі"]</a>
                         </div>
                     </div>
-                    <h2>@item.Name_For_User</h2>
-                    <h2>@item.Price $</h2>      
+                    <h2>@localizer[item.Name_For_User]</h2>
+                    <h2>@item.Price ГРН.</h2>      
                     <a asp-action="Edit" asp-controller="Offers" asp-route-id="@item.Id"><button>Edit</button></a>
                 </li>
             }

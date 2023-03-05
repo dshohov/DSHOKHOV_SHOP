@@ -12,8 +12,8 @@
         <img class="small_img" src="@Model.Product.Image5" alt="">
     </div>
     <div class="price">
-        <h3>@Model.Product.Sub_category</h3>
-        <h2 class="f_left">@Model.Product.Name_For_User</h2><h2 class="f_right">@Model.Product.Price .ГРН</h2>
+        <h3>@localizer[Model.Product.Sub_category]</h3>
+        <h2 class="f_left">@localizer[Model.Product.Name_For_User]</h2><h2 class="f_right">@Model.Product.Price ГРН.</h2>
         <h3>id - @Model.Product.Id</h3>
         <h5>@localizer["Розміри"]</h5>
         <form asp-action="Add_Product" asp-controller="Orders" enctype="multipart/form-data" method="post">
@@ -23,7 +23,7 @@
                 <select asp-for="@Model.Set_Product.Set_Size" class="form-control">
                     @foreach(string item in  Model.Product.Sizes.Split(","))
                     {
-                        <option value="@item">@item</option>
+                        <option value="@item">@localizer[item]</option>
                     }
                 </select>            
             </section>
@@ -33,5 +33,5 @@
 </div>
 <div class="description">
     <h2>@localizer["ОПИС"]</h2>
-    <h3>@Model.Product.Description</h3>
+    <h3>@localizer[Model.Product.Description]</h3>
 </div>

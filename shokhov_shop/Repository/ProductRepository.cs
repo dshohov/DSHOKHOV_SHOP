@@ -1,10 +1,13 @@
 ﻿using CloudinaryDotNet.Actions;
+using Google.Cloud.Translation.V2;
 using Microsoft.EntityFrameworkCore;
 using shokhov_shop.Data;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
 using shokhov_shop.ViewModels;
+using System.Collections;
 using System.Linq;
+using System.Resources;
 
 namespace shokhov_shop.Repository
 {
@@ -12,10 +15,12 @@ namespace shokhov_shop.Repository
     {
         private readonly ApplicationDbContext _context;
         private readonly IPhotoService _photoService;
-        public ProductRepository(ApplicationDbContext context, IPhotoService photoService)
+        private readonly IConfiguration _config;
+        public ProductRepository(ApplicationDbContext context, IPhotoService photoService, IConfiguration config)
         {
             _context = context;
             _photoService = photoService;
+            _config = config;
         }
         public bool Add(Product product)
         {
@@ -162,6 +167,46 @@ namespace shokhov_shop.Repository
                 };
             
             return product;
+        }
+
+        public async Task WriteToResources(string[] uaWord, string[] enWord, string[] path)
+        {
+
+            //"Resources\\Views\\Category\\Woman.en.resx"
+            foreach(string item in path)
+            {
+                var resxFilePath = item;
+                // Создаем экземпляр ResXResourceReader для чтения существующих ресурсов
+                using (var resxReader = new ResXResourceReader(resxFilePath))
+                {
+                    // Создаем экземпляр ResXResourceWriter для записи обновленного файла ресурсов
+                    using (var resxWriter = new System.Resources.ResXResourceWriter(resxFilePath))
+                    {
+                        // Копируем существующие ресурсы в ResXResourceWriter
+                        foreach (DictionaryEntry resource in resxReader)
+                        {
+                            resxWriter.AddResource(resource.Key.ToString(), resource.Value);
+                        }
+
+                        // Добавляем новые ресурсы в ResXResourceWriter
+                        for(int i = 0; i < uaWord.Count(); i++)
+                        {
+                           resxWriter.AddResource(uaWord[i], enWord[i]);
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        public async Task<string> TranslateWordAsync(string word)
+        {
+            string textToTranslate = word;
+            string targetLanguage = "en"; // English
+            var moviesApiKey = _config["TranslationApiKey"];
+            TranslationClient client = TranslationClient.CreateFromApiKey(moviesApiKey);
+            var response = await client.TranslateTextAsync(textToTranslate, targetLanguage);
+            return response.TranslatedText;
         }
     }
 }

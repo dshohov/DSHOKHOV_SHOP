@@ -14,7 +14,7 @@
 <!--Offers example-->
 <div class="context">
     <div class="ofers_nav">
-        <h1>@ViewBag.Messege</h1>
+        <h1>@localizer[ViewBag.Messege]</h1>
         <ul>
             <li><a asp-action="Offers" asp-controller="Offers" asp-route-id="@Model.First().Category_id">@localizer["Усі"]</a></li>
             @{
@@ -27,7 +27,7 @@
                     {
                         sub_categories.Add(i,item.Sub_category);
                         i++;
-                            <li><a asp-route-id="@item.Id" asp-action="OffersUseFilters" asp-controller="Offers">@item.Sub_category</a></li>
+                            <li><a asp-route-id="@item.Id" asp-action="OffersUseFilters" asp-controller="Offers">@localizer[item.Sub_category]</a></li>
                     }
                 }
             }
@@ -44,8 +44,8 @@
                             <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">@localizer["Деталі"]</a>
                         </div>
                     </div>
-                    <h2>@item.Name_For_User</h2>
-                    <h2>@item.Price $</h2>    
+                    <h2>@localizer[item.Name_For_User]</h2>
+                    <h2>@item.Price ГРН.</h2>    
                     @if(User.Identity.IsAuthenticated){
                         @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                         {

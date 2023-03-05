@@ -42,6 +42,21 @@ namespace shokhov_shop.Controllers
         public async Task<IActionResult> Create(CreateOrEditProductViewModel productVM)
         {
             var product = await _productRepository.Create_ProductAsync(productVM);
+            string[] uaWords = new string[] { product.Name_For_User,product.Description,product.Sub_category,_productRepository.GetNameCategory(product.Category_id) };
+            string[] enWord = new string[] {
+                await _productRepository.TranslateWordAsync(uaWords[0]),
+                await _productRepository.TranslateWordAsync(uaWords[1]),
+                await _productRepository.TranslateWordAsync(uaWords[2]),
+                await _productRepository.TranslateWordAsync(uaWords[3]),
+            };
+            string[] paths = new string[] {
+                "Resources\\Views\\Offers\\Offers.en.resx",
+                "Resources\\Views\\Offers\\OffersUseFilters.en.resx",
+                "Resources\\Views\\Offers\\Search.en.resx",
+                "Resources\\Views\\Orders\\Index.en.resx",
+                "Resources\\Views\\Product\\Index.en.resx"
+            };
+            await _productRepository.WriteToResources(uaWords, enWord, paths);
             _productRepository.Add(product);
             return RedirectToAction("Offers");
         }
@@ -83,12 +98,43 @@ namespace shokhov_shop.Controllers
                 }
                 if ((productVM.Image != null) && (productVM.Image2 != null) && (productVM.Image3 != null) && (productVM.Image4 != null) && (productVM.Image5 != null))
                 {
-                    var product = _productRepository.Update_All_Photo_Async(id, productVM);
-                    _productRepository.Update(await product);
+                    var product = await _productRepository.Update_All_Photo_Async(id, productVM);
+                    string[] uaWords = new string[] { product.Name_For_User, product.Description, product.Sub_category, _productRepository.GetNameCategory(product.Category_id) };
+                    string[] enWord = new string[] {
+                        await _productRepository.TranslateWordAsync(uaWords[0]),
+                        await _productRepository.TranslateWordAsync(uaWords[1]),
+                        await _productRepository.TranslateWordAsync(uaWords[2]),
+                        await _productRepository.TranslateWordAsync(uaWords[3]),
+                    };
+                            string[] paths = new string[] {
+                        "Resources\\Views\\Offers\\Offers.en.resx",
+                        "Resources\\Views\\Offers\\OffersUseFilters.en.resx",
+                        "Resources\\Views\\Offers\\Search.en.resx",
+                        "Resources\\Views\\Orders\\Index.en.resx",
+                        "Resources\\Views\\Product\\Index.en.resx"
+                    };
+                    await _productRepository.WriteToResources(uaWords, enWord, paths);
+                    _productRepository.Update(product);
                 }
                 else
                 {
                     var product = _productRepository.NoUpdate_Photo(id, productVM, editProduct);
+                    var translateWord = await _productRepository.TranslateWordAsync(product.Name_For_User);
+                    string[] uaWords = new string[] { product.Name_For_User, product.Description, product.Sub_category, _productRepository.GetNameCategory(product.Category_id) };
+                    string[] enWord = new string[] {
+                        await _productRepository.TranslateWordAsync(uaWords[0]),
+                        await _productRepository.TranslateWordAsync(uaWords[1]),
+                        await _productRepository.TranslateWordAsync(uaWords[2]),
+                        await _productRepository.TranslateWordAsync(uaWords[3])
+                    };
+                    string[] paths = new string[] {
+                        "Resources\\Views\\Offers\\Offers.en.resx",
+                        "Resources\\Views\\Offers\\OffersUseFilters.en.resx",
+                        "Resources\\Views\\Offers\\Search.en.resx",
+                        "Resources\\Views\\Orders\\Index.en.resx",
+                        "Resources\\Views\\Product\\Index.en.resx"
+                    };
+                    await _productRepository.WriteToResources(uaWords, enWord, paths);
                     _productRepository.Update(product);
                 }
 
