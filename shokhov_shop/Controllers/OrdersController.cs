@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LiqPay.SDK;
+using LiqPay.SDK.Dto;
+using LiqPay.SDK.Dto.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using shokhov_shop.Interfaces;
 using shokhov_shop.Models;
@@ -9,10 +12,12 @@ namespace shokhov_shop.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly UserManager<AppUser> _userManager;
-        public OrdersController(UserManager<AppUser> userManager,IOrderRepository orderRepository)
+        private readonly IConfiguration _config;
+        public OrdersController(UserManager<AppUser> userManager,IOrderRepository orderRepository, IConfiguration config)
         {
             _userManager = userManager;
             _orderRepository = orderRepository;
+            _config = config;
         }
 
         public IActionResult Index()
@@ -38,11 +43,35 @@ namespace shokhov_shop.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
         }
         [HttpPost]
-        public IActionResult Buy(Order order)
+        public async Task<IActionResult> Buy(Order order)
         {
             AppUser user = _userManager.GetUserAsync(User).Result;
             var old_order = _orderRepository.Search_Order_User_Not_Confirm(user);
             old_order = _orderRepository.Update_Old_Order(old_order, order);
+            var list_prod_for_check = new List <LiqPayRequestGoods>(){ };
+            foreach (Set_Product item in old_order.Set_Products)
+            {
+                var set_prod_for_check = new LiqPayRequestGoods() { Amount = (double)item.Price, Count = 1, Name = item.Name, Unit = "шт." };
+                list_prod_for_check.Add(set_prod_for_check);
+            }
+            // send invoce by email
+            var invoiceRequest = new LiqPayRequest
+            {
+                Email = old_order.User.Email,
+                Amount = (double)old_order.Total_Price,
+                Currency = "UAH",
+                OrderId = old_order.Id.ToString(),
+                Action = LiqPayRequestAction.InvoiceSend,
+                Language = LiqPayRequestLanguage.UK,
+                Goods = list_prod_for_check
+
+            };
+            
+            var a = _config["Liqpay_public"];
+            var b = _config["Liqpay_private"];
+            var liqPayClient = new LiqPayClient(a, b);
+            //liqPayClient.IsCnbSandbox = true;
+            var response = await liqPayClient.RequestAsync("request", invoiceRequest);
             _orderRepository.Update(old_order);
             return View();
         }

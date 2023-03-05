@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Дякуємо за ваше замовлення, наш менеджер з вами зв'яжеться для підтвердження замовлення та для допомоги з оплатою. З повагою Інтренет Магазин Речей!" xml:space="preserve">
-    <value>Thank you for your order, our manager will contact you to confirm the order and help with payment. Sincerely, the Internet Store of Things!</value>
+  <data name="Дякуємо за ваше замовлення, ми відправили вам посилання для оплати на вашу єлектрону пошту. Якщо у вас будуть запитання ви можете звернутися до наших менеджерів. Гарного вам дня!" xml:space="preserve">
+    <value>Thank you for your order, we have sent you a payment link to your email. If you have any questions, you can contact our managers. Have a good day!</value>
   </data>
   <data name="Дякуємо за замовлення" xml:space="preserve">
     <value>Thank you for your order</value>

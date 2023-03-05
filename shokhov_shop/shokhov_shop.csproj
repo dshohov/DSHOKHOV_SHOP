@@ -45,6 +45,7 @@
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
     <PackageReference Include="Google.Cloud.Translation.V2" Version="3.1.0" />
+    <PackageReference Include="LiqPay" Version="2022.6.1812.5401" />
     <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.5" />
