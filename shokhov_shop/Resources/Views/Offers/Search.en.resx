@@ -165,6 +165,9 @@
   <data name="Свічки" xml:space="preserve">
     <value>Candles</value>
   </data>
+  <data name="Осінній роспродаж" xml:space="preserve">
+    <value>Autumn sale</value>
+  </data>
   <data name="Зимове пальто " xml:space="preserve">
     <value>Winter coat</value>
   </data>

@@ -207,4 +207,16 @@
   <data name="Розмір" xml:space="preserve">
     <value>Size</value>
   </data>
+  <data name="Зимове пальто " xml:space="preserve">
+    <value>Winter coat</value>
+  </data>
+  <data name="Тепле зимове пальто , дуже добре підходить до теплої зими." xml:space="preserve">
+    <value>Warm winter coat, very suitable for warm winter.</value>
+  </data>
+  <data name="Пальто" xml:space="preserve">
+    <value>Coat</value>
+  </data>
+  <data name="Осінній роспродаж" xml:space="preserve">
+    <value>Autumn sale</value>
+  </data>
 </root>
