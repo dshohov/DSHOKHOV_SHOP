@@ -1,33 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using shokhov_shop.Data;
 using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
 using shokhov_shop.ViewModels;
-using System.Collections;
-using System.Resources;
-using Google.Cloud.Translation.V2;
-using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
-using shokhov_shop.Helpers;
-using Microsoft.Extensions.Options;
-using shokhov_shop.Services;
-using Microsoft.AspNetCore.Mvc.Localization;
 
 namespace shokhov_shop.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly IHtmlLocalizer<HomeController> _localizer;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IPhotoService _photoService;
         
-        public CategoryController(ICategoryRepository categoryRepository, IPhotoService photoService, IHtmlLocalizer<HomeController> localizer)
+        public CategoryController(ICategoryRepository categoryRepository, IPhotoService photoService)
         {
             _categoryRepository = categoryRepository;
             _photoService = photoService;
-            _localizer = localizer;
         }
 
         public async Task<IActionResult> Woman()
