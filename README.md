@@ -18,6 +18,7 @@ Educational project to demonstrate my skills. The project is an online store of 
 - [JavaScript](https://www.javascript.com/)
 - [Bootstrap](https://getbootstrap.com/)
 - [My Web Api](https://github.com/dshohov/DSHOKHOV_SHOP/tree/develop/Search_WebApi)
+- [MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
 ## Helpers
 - [SendGrid Api(To send emails)](https://sendgrid.com/)
