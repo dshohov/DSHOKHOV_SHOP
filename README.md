@@ -26,6 +26,8 @@ Educational project to demonstrate my skills. The project is an online store of 
 - [LiqPay(To pay for an order)](https://www.liqpay.ua/documentation/api/home)
 - [Microsoft.AspNetCore.Identity(For authentication and authorization)](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio)
 - [SignalR(For real-time message processing)](https://dotnet.microsoft.com/en-us/apps/aspnet/signalr)
+- [Google Authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-7.0)
+- [Facebook Authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins?view=aspnetcore-7.0)
 
 ## Deploy и CI/CD
 
