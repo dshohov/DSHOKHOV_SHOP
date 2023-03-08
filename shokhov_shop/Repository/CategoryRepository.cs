@@ -1,11 +1,9 @@
-﻿using CloudinaryDotNet.Actions;
-using Google.Cloud.Translation.V2;
+﻿using Google.Cloud.Translation.V2;
 using Microsoft.EntityFrameworkCore;
 using shokhov_shop.Data;
 using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
-using shokhov_shop.ViewModels;
 using System.Collections;
 using System.Resources;
 
@@ -70,7 +68,7 @@ namespace shokhov_shop.Repository
             var response = await client.TranslateTextAsync(textToTranslate, targetLanguage);
             return response.TranslatedText;
         }
-        public void WriteToResources(string uaWord, string enWord, People people)
+        public async Task WriteToResources(string uaWord, string enWord, People people)
         {
             var resxFilePath = "Resources\\Views\\Category\\Woman.en.resx";
             switch (people)
@@ -85,24 +83,27 @@ namespace shokhov_shop.Repository
                     resxFilePath = "Resources\\Views\\Category\\Child.en.resx";
                     break;
             }
-            
 
-            // Создаем экземпляр ResXResourceReader для чтения существующих ресурсов
-            using (var resxReader = new ResXResourceReader(resxFilePath))
+            await Task.Run(() =>
             {
-                // Создаем экземпляр ResXResourceWriter для записи обновленного файла ресурсов
-                using (var resxWriter = new System.Resources.ResXResourceWriter(resxFilePath))
+                // Создаем экземпляр ResXResourceReader для чтения существующих ресурсов
+                using (var resxReader = new ResXResourceReader(resxFilePath))
                 {
-                    // Копируем существующие ресурсы в ResXResourceWriter
-                    foreach (DictionaryEntry resource in resxReader)
+                    // Создаем экземпляр ResXResourceWriter для записи обновленного файла ресурсов
+                    using (var resxWriter = new System.Resources.ResXResourceWriter(resxFilePath))
                     {
-                        resxWriter.AddResource(resource.Key.ToString(), resource.Value);
-                    }
+                        // Копируем существующие ресурсы в ResXResourceWriter
+                        foreach (DictionaryEntry resource in resxReader)
+                        {
+                            resxWriter.AddResource(resource.Key.ToString(), resource.Value);
+                        }
 
-                    // Добавляем новые ресурсы в ResXResourceWriter
-                    resxWriter.AddResource(uaWord, enWord);
+                        // Добавляем новые ресурсы в ResXResourceWriter
+                        resxWriter.AddResource(uaWord, enWord);
+                    }
                 }
-            }
+            });
+            
         }
         
         

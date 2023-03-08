@@ -24,9 +24,9 @@ namespace shokhov_shop.Controllers
             return View(_chatHistoryRepository.GetChatHistories());
         }
         [HttpPost]
-        public IActionResult Delete(int messageId)
+        public async Task<IActionResult> Delete(int messageId)
         {
-            _chatHistoryRepository.Delete(_chatHistoryRepository.GetMessage(messageId));
+            _chatHistoryRepository.Delete(await _chatHistoryRepository.GetMessage(messageId));
             return RedirectToAction(nameof(ChatHistory));
         }
         public IActionResult ViewMessage(int messageId)

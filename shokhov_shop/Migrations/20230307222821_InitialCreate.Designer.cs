@@ -12,15 +12,15 @@ using shokhov_shop.Data;
 namespace shokhovshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230226111438_Add_Orders")]
-    partial class AddOrders
+    [Migration("20230307222821_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -288,24 +288,30 @@ namespace shokhovshop.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Comment")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Confirmed_Admin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Full_Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Is_Approved")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Number_Post")
+                    b.Property<int?>("Number_Post")
                         .HasColumnType("int");
 
                     b.Property<string>("Telefon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Total_Price")
+                    b.Property<decimal?>("Total_Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
@@ -385,14 +391,22 @@ namespace shokhovshop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("Id_Product")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Set_Size")
                         .IsRequired()
@@ -402,9 +416,7 @@ namespace shokhovshop.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Set_Product");
+                    b.ToTable("Set_Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -471,17 +483,13 @@ namespace shokhovshop.Migrations
 
             modelBuilder.Entity("shokhov_shop.Models.Set_Product", b =>
                 {
-                    b.HasOne("shokhov_shop.Models.Order", null)
+                    b.HasOne("shokhov_shop.Models.Order", "Order")
                         .WithMany("Set_Products")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("shokhov_shop.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("shokhov_shop.Models.Order", b =>

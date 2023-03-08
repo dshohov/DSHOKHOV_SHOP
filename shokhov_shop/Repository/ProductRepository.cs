@@ -1,12 +1,10 @@
-﻿using CloudinaryDotNet.Actions;
-using Google.Cloud.Translation.V2;
+﻿using Google.Cloud.Translation.V2;
 using Microsoft.EntityFrameworkCore;
 using shokhov_shop.Data;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
 using shokhov_shop.ViewModels;
 using System.Collections;
-using System.Linq;
 using System.Resources;
 
 namespace shokhov_shop.Repository
@@ -54,9 +52,9 @@ namespace shokhov_shop.Repository
             return await _context.Products.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public string GetNameCategory(int id)
+        public async Task<string> GetNameCategory(int id)
         {
-            var a = _context.Categories.FirstOrDefault(c => c.Id == id);
+            var a = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
             return a.Name_For_User;
         }
 
@@ -80,7 +78,7 @@ namespace shokhov_shop.Repository
             return await _context.Products.Where(i => i.Id == id).FirstAsync();
         }
 
-        public async void Delete_All_Photo_Async(Product edit_Product)
+        public async Task Delete_All_Photo_Async(Product edit_Product)
         {
             await _photoService.DeletePhotoAsync(edit_Product.Image);
             await _photoService.DeletePhotoAsync(edit_Product.Image2);
@@ -116,26 +114,30 @@ namespace shokhov_shop.Repository
             };
             return product;
         }
-        public Product NoUpdate_Photo(int id, CreateOrEditProductViewModel productVM, Product editProduct)
+        public async Task<Product> NoUpdate_Photo(int id, CreateOrEditProductViewModel productVM, Product editProduct)
         {
-            string[] sizes_Array = productVM.Sizes_Array ?? new string[0];
-            var product = new Product
+            await Task.Run(() =>
             {
-                Id = id,
-                Name_For_User = productVM.Name_For_User,
-                Description = productVM.Description,
-                People = productVM.People,
-                Category_id = productVM.Category_id,
-                Price = productVM.Price,
-                Sub_category = productVM.Sub_category,
-                Image = editProduct.Image,
-                Image2 = editProduct.Image2,
-                Image3 = editProduct.Image3,
-                Image4 = editProduct.Image4,
-                Image5 = editProduct.Image5,
-                Sizes = string.Join(",", sizes_Array)
-            };
-            return product;
+                string[] sizes_Array = productVM.Sizes_Array ?? new string[0];
+                var product = new Product
+                {
+                    Id = id,
+                    Name_For_User = productVM.Name_For_User,
+                    Description = productVM.Description,
+                    People = productVM.People,
+                    Category_id = productVM.Category_id,
+                    Price = productVM.Price,
+                    Sub_category = productVM.Sub_category,
+                    Image = editProduct.Image,
+                    Image2 = editProduct.Image2,
+                    Image3 = editProduct.Image3,
+                    Image4 = editProduct.Image4,
+                    Image5 = editProduct.Image5,
+                    Sizes = string.Join(",", sizes_Array)
+                };
+                return product;
+            });
+            return editProduct;
         }
 
 
@@ -171,32 +173,33 @@ namespace shokhov_shop.Repository
 
         public async Task WriteToResources(string[] uaWord, string[] enWord, string[] path)
         {
-
-            //"Resources\\Views\\Category\\Woman.en.resx"
-            foreach(string item in path)
+            await Task.Run(() =>
             {
-                var resxFilePath = item;
-                // Создаем экземпляр ResXResourceReader для чтения существующих ресурсов
-                using (var resxReader = new ResXResourceReader(resxFilePath))
+                //"Resources\\Views\\Category\\Woman.en.resx"
+                foreach (string item in path)
                 {
-                    // Создаем экземпляр ResXResourceWriter для записи обновленного файла ресурсов
-                    using (var resxWriter = new System.Resources.ResXResourceWriter(resxFilePath))
+                    var resxFilePath = item;
+                    // Создаем экземпляр ResXResourceReader для чтения существующих ресурсов
+                    using (var resxReader = new ResXResourceReader(resxFilePath))
                     {
-                        // Копируем существующие ресурсы в ResXResourceWriter
-                        foreach (DictionaryEntry resource in resxReader)
+                        // Создаем экземпляр ResXResourceWriter для записи обновленного файла ресурсов
+                        using (var resxWriter = new System.Resources.ResXResourceWriter(resxFilePath))
                         {
-                            resxWriter.AddResource(resource.Key.ToString(), resource.Value);
-                        }
+                            // Копируем существующие ресурсы в ResXResourceWriter
+                            foreach (DictionaryEntry resource in resxReader)
+                            {
+                                resxWriter.AddResource(resource.Key.ToString(), resource.Value);
+                            }
 
-                        // Добавляем новые ресурсы в ResXResourceWriter
-                        for(int i = 0; i < uaWord.Count(); i++)
-                        {
-                           resxWriter.AddResource(uaWord[i], enWord[i]);
+                            // Добавляем новые ресурсы в ResXResourceWriter
+                            for (int i = 0; i < uaWord.Count(); i++)
+                            {
+                                resxWriter.AddResource(uaWord[i], enWord[i]);
+                            }
                         }
                     }
                 }
-            }
-            
+            });
         }
 
         public async Task<string> TranslateWordAsync(string word)

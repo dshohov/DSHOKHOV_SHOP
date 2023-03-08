@@ -1,7 +1,5 @@
-﻿using CloudinaryDotNet.Actions;
-using shokhov_shop.Data.Enum;
+﻿using shokhov_shop.Data.Enum;
 using shokhov_shop.Models;
-using shokhov_shop.ViewModels;
 
 namespace shokhov_shop.Intefaces
 {
@@ -11,7 +9,7 @@ namespace shokhov_shop.Intefaces
         Task<Category> GetByIdAsyncNoTracking(int id);
         Task<Category> GetByIdAsync(int id);
         Task<string> TranslateWordAsync(string word);
-        void WriteToResources(string uaWord, string enWord, People people);
+        Task WriteToResources(string uaWord, string enWord, People people);
         bool Add(Category category);
         bool Update(Category category);
         bool Save();

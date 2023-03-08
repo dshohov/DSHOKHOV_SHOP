@@ -207,14 +207,23 @@
   <data name="Розмір" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="Пухова желетка" xml:space="preserve">
-    <value>Pooh jelly</value>
+  <data name="Джинсова куртка" xml:space="preserve">
+    <value>Denim jacket</value>
   </data>
-  <data name="Тепла річ, гарно підійде для коротких прогулянок." xml:space="preserve">
-    <value>Warm thing, good for short walks.</value>
+  <data name="Стильна куртка з твердого джинсу для чоловіків." xml:space="preserve">
+    <value>Stylish jacket made of solid denim for men.</value>
   </data>
-  <data name="Желетка" xml:space="preserve">
-    <value>Vest</value>
+  <data name="Куртки" xml:space="preserve">
+    <value>Jackets</value>
+  </data>
+  <data name="Спортивні штани" xml:space="preserve">
+    <value>Pants</value>
+  </data>
+  <data name="Зручні та стильні спортивні штани для чоловіків." xml:space="preserve">
+    <value>Comfortable and stylish sports pants for men.</value>
+  </data>
+  <data name="Штани" xml:space="preserve">
+    <value>Pants</value>
   </data>
   <data name="Осінній роспродаж" xml:space="preserve">
     <value>Autumn sale</value>

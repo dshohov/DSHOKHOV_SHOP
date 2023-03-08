@@ -1,4 +1,8 @@
-﻿using shokhov_shop.Data;
+﻿using LiqPay.SDK;
+using LiqPay.SDK.Dto;
+using LiqPay.SDK.Dto.Enums;
+using Microsoft.EntityFrameworkCore;
+using shokhov_shop.Data;
 using shokhov_shop.Interfaces;
 using shokhov_shop.Models;
 
@@ -7,9 +11,11 @@ namespace shokhov_shop.Repository
     public class OrderRepository : IOrderRepository
     {
         private readonly ApplicationDbContext _context;
-        public OrderRepository(ApplicationDbContext context)
+        private readonly IConfiguration _config;
+        public OrderRepository(ApplicationDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
         public bool Add(Order order)
         {
@@ -17,10 +23,10 @@ namespace shokhov_shop.Repository
             return Save();
         }
 
-        public void Add_Product(Order order, Set_Product set_Product)
+        public async Task Add_Product(Order order, Set_Product set_Product)
         {   
             set_Product.Order= order;
-            Product product = _context.Products.FirstOrDefault(p => p.Id==set_Product.Id_Product);
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id==set_Product.Id_Product);
             set_Product.Price = product.Price;
             set_Product.Name = product.Name_For_User;
             set_Product.Image = product.Image;
@@ -38,14 +44,14 @@ namespace shokhov_shop.Repository
             return _context.Set_Products.Where(i => i.Order == order).ToList();
         }
 
-        public IEnumerable<Order> Get_isAproved_Orders()
+        public async Task<IEnumerable<Order>> Get_isAproved_Orders()
         {
-            return _context.Orders.Where(i => i.Is_Approved == true).ToList();
+            return await _context.Orders.Where(i => i.Is_Approved == true).ToListAsync();
         }
 
-        public bool Remove_Product(Order order,int id)
+        public async Task<bool> Remove_Product(Order order,int id)
         {
-            var set_Product = _context.Set_Products.FirstOrDefault(p => p.Id==id);
+            var set_Product = await _context.Set_Products.FirstOrDefaultAsync(p => p.Id==id);
             order.Set_Products.Remove(set_Product);
             _context.Remove(set_Product);
             return Save();
@@ -57,14 +63,42 @@ namespace shokhov_shop.Repository
             return saved > 0 ? true : false;
         }
 
-        public Order Search_Order_Id(int id)
+        public async Task<Order> Search_Order_Id(int id)
         {
-            return _context.Orders.Where(i => i.Id == id).FirstOrDefault();
+            return await _context.Orders.Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Order Search_Order_User_Not_Confirm(AppUser user)
+        public async Task<Order> Search_Order_User_Not_Confirm(AppUser user)
         {
-            return _context.Orders.Where(i => i.User == user && i.Is_Approved == false).FirstOrDefault();
+            return await _context.Orders.Where(i => i.User == user && i.Is_Approved == false).FirstOrDefaultAsync();
+        }
+
+        public async Task Send_PayForm(Order old_order)
+        {
+            var list_prod_for_check = new List<LiqPayRequestGoods>() { };
+            foreach (Set_Product item in old_order.Set_Products)
+            {
+                var set_prod_for_check = new LiqPayRequestGoods() { Amount = (double)item.Price, Count = 1, Name = item.Name, Unit = "шт." };
+                list_prod_for_check.Add(set_prod_for_check);
+            }
+            // send invoce by email
+            var invoiceRequest = new LiqPayRequest
+            {
+                Email = old_order.User.Email,
+                Amount = (double)old_order.Total_Price,
+                Currency = "UAH",
+                OrderId = old_order.Id.ToString(),
+                Action = LiqPayRequestAction.InvoiceSend,
+                Language = LiqPayRequestLanguage.UK,
+                Goods = list_prod_for_check
+
+            };
+
+            var a = _config["Liqpay_public"];
+            var b = _config["Liqpay_private"];
+            var liqPayClient = new LiqPayClient(a, b);
+            //liqPayClient.IsCnbSandbox = true;
+            var response = await liqPayClient.RequestAsync("request", invoiceRequest);
         }
 
         public decimal TotalPrice(Order order)
@@ -78,18 +112,22 @@ namespace shokhov_shop.Repository
             return Save();
         }
 
-        public Order Update_Old_Order(Order old_order, Order order)
+        public async Task<Order> Update_Old_Order(Order old_order, Order order)
         {
-            old_order.Number_Post = order.Number_Post;
-            old_order.Comment = order.Comment;
-            old_order.Full_Name = order.Full_Name;
-            old_order.Telefon = order.Telefon;
-            old_order.City = order.City;
-            old_order.Set_Products = GetSet_Products(old_order);
-            old_order.Total_Price = TotalPrice(old_order);
-            old_order.Is_Approved = true;
-            old_order.Completed = false;
-            old_order.Confirmed_Admin = false;
+            await Task.Run(() =>
+            {
+                old_order.Number_Post = order.Number_Post;
+                old_order.Comment = order.Comment;
+                old_order.Full_Name = order.Full_Name;
+                old_order.Telefon = order.Telefon;
+                old_order.City = order.City;
+                old_order.Set_Products = GetSet_Products(old_order);
+                old_order.Total_Price = TotalPrice(old_order);
+                old_order.Is_Approved = true;
+                old_order.Completed = false;
+                old_order.Confirmed_Admin = false;
+            });
+            
             return old_order;
         }
     }

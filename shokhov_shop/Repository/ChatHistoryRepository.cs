@@ -1,4 +1,5 @@
-﻿using shokhov_shop.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using shokhov_shop.Data;
 using shokhov_shop.Interfaces;
 using shokhov_shop.Models;
 
@@ -24,16 +25,16 @@ namespace shokhov_shop.Repository
             return Save();
         }
 
-        public List<ChatHistory> GetChatHistories()
+        public async Task<List<ChatHistory>> GetChatHistories()
         {
-            return _context.ChatHistory
+            return await _context.ChatHistory
                 .OrderByDescending(m => m.CreatedDate)
-                .ToList();
+                .ToListAsync();
         }
 
-        public ChatHistory GetMessage(int chatId)
+        public async Task<ChatHistory> GetMessage(int chatId)
         {
-            return _context.ChatHistory.Where(i => i.Id == chatId).FirstOrDefault();
+            return await _context.ChatHistory.Where(i => i.Id == chatId).FirstOrDefaultAsync();
         }
 
         public bool Save()

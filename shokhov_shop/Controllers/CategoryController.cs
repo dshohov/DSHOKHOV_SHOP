@@ -72,9 +72,9 @@ namespace shokhov_shop.Controllers
                 Image = result.Url.ToString(),
             };
             var word = await _categoryRepository.TranslateWordAsync(category.Name_For_User);
-            _categoryRepository.WriteToResources(category.Name_For_User, word,category.People);
+            await _categoryRepository.WriteToResources(category.Name_For_User, word,category.People);
             word = await _categoryRepository.TranslateWordAsync(category.Description);
-            _categoryRepository.WriteToResources(category.Description, word, category.People);
+            await _categoryRepository.WriteToResources(category.Description, word, category.People);
             _categoryRepository.Add(category);
             return RedirectToAction("Woman");
         }
@@ -122,9 +122,9 @@ namespace shokhov_shop.Controllers
                         Image = photoResult.Url.ToString()
                     };
                     var word = await _categoryRepository.TranslateWordAsync(category.Name_For_User);
-                    _categoryRepository.WriteToResources(category.Name_For_User, word, category.People);
+                    await _categoryRepository.WriteToResources(category.Name_For_User, word, category.People);
                     word = await _categoryRepository.TranslateWordAsync(category.Description);
-                    _categoryRepository.WriteToResources(category.Description, word, category.People);
+                    await _categoryRepository.WriteToResources(category.Description, word, category.People);
                     _categoryRepository.Update(category);
                 }
                 else
@@ -138,9 +138,9 @@ namespace shokhov_shop.Controllers
                         Image = editCategory.Image
                     };
                     var word = await _categoryRepository.TranslateWordAsync(category.Name_For_User);
-                    _categoryRepository.WriteToResources(category.Name_For_User, word, category.People);
+                    await _categoryRepository.WriteToResources(category.Name_For_User, word, category.People);
                     word = await _categoryRepository.TranslateWordAsync(category.Description);
-                    _categoryRepository.WriteToResources(category.Description, word, category.People);
+                    await _categoryRepository.WriteToResources(category.Description, word, category.People);
                     _categoryRepository.Update(category);
                 }
 
@@ -160,16 +160,6 @@ namespace shokhov_shop.Controllers
                 return RedirectToAction("Woman");
             }
             return View(categoryVM);
-        }
-        public async Task<IActionResult> Test()
-        {
-            Category cat = await _categoryRepository.GetByIdAsync(1);
-
-            var word = await _categoryRepository.TranslateWordAsync(cat.Name_For_User);
-            _categoryRepository.WriteToResources(cat.Name_For_User, word, cat.People);
-            
-            
-            return View();
         }
     }
 }
