@@ -5,7 +5,7 @@ using shokhov_shop.Data.Enum;
 using shokhov_shop.Intefaces;
 using shokhov_shop.Models;
 using System.Collections;
-using System.Resources;
+using System.Windows.Forms;
 
 namespace shokhov_shop.Repository
 {
@@ -87,7 +87,7 @@ namespace shokhov_shop.Repository
             await Task.Run(() =>
             {
                 // Создаем экземпляр ResXResourceReader для чтения существующих ресурсов
-                using (var resxReader = new ResXResourceReader(resxFilePath))
+                using (var resxReader = new System.Resources.ResXResourceReader(resxFilePath))
                 {
                     // Создаем экземпляр ResXResourceWriter для записи обновленного файла ресурсов
                     using (var resxWriter = new System.Resources.ResXResourceWriter(resxFilePath))

@@ -77,6 +77,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Controllers\" />
+    <Folder Include="v\" />
   </ItemGroup>
 
 </Project>
