@@ -40,6 +40,7 @@
     <None Include="Views\Role\Upsert.cshtml" />
     <None Include="Views\User\Edit.cshtml" />
     <None Include="Views\User\Index.cshtml" />
+    <None Include="wwwroot\lib\System.Windows.Forms.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,7 +78,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Controllers\" />
-    <Folder Include="v\" />
   </ItemGroup>
 
 </Project>
