@@ -34,6 +34,7 @@ Project link: https://shokhovshop20230309210347.azurewebsites.net/
 
 ## Contributing
 For help in development, please contact me via my e-mail. The subject for help can be a bug or suggestions for improving the code, adding new options for the development of the application.
+-The problems that are currently there are not working Web Api in the published application.
 
 ## Why was this project developed?
 The project was created for practical experience in writing full-fledged web applications. For learning new technologies and for implementing APIs that are interesting to me. This tutorial project helped me delve deeper into the back-end development process.
