@@ -1,0 +1,16 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<link rel="stylesheet" href="~/css/support.css">
+
+    <div class="main">  	
+<input type="checkbox"  id="chk" aria-hidden="true">
+<div class="signup"  >
+        <form asp-action="Woman" asp-controller="Category">
+            <label for="chk" aria-hidden="true">@localizer["Шановний користувач"]</label>
+
+            <div class="sub_text">
+                <p>@ViewBag.Message</p>
+            </div>
+            <button id="sendmessage">@localizer["Повернутися на головну"]</button>
+        </form>
+    </div>        
+</div>

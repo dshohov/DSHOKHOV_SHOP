@@ -1,16 +1,45 @@
+# DSHOKHOV_SHOP
+Educational project to demonstrate my skills. The project is an online store of things for children, women and men. The project is still under development.
 
-A tutorial project for learning ASP.NET CORE.
+## Content
+- [Technologies](#Technologies)
+- [Helpers](#Helpers)
+- [Deploy и CI/CD](#deploy-и-ci/cd)
+- [Contributing](#contributing)
+- [Why was this project developed](#why-was-this-project-developed)
+- [The project team](#the-project-team)
+- [Sources](#sources)
 
-The design of the project was developed by me in Figma: https://www.figma.com/file/ZdACXCl3i6IhwJQnpX4EM4/DSHOKHOV_SHOP?node-id=0%3A1
+## Technologies
+- [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)
+- [EntityFrameworkCore](https://learn.microsoft.com/en-us/ef/core/)
+- [Html](https://www.w3schools.com/html/)
+- [Css](https://www.w3schools.com/Css/)
+- [JavaScript](https://www.javascript.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [My Web Api](https://github.com/dshohov/DSHOKHOV_SHOP/tree/develop/Search_WebApi)
+- [MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
-Functions that will be in the application (this list may change during the work on the project):
-1) Logging
-2) Administration to change old cards or add new product cards. Tracking received orders.
-3) Cart implementations
-4) Change app language
-5) Calculation of delivery if it is not free
-6) Implementation of the system of promotional codes
-7) Adding a payment system
-8) Sending an order notification to the company's corporate mail
-9) Sending to the client that we received the order
-10) Adding filters
+## Helpers
+- [SendGrid Api(To send emails)](https://sendgrid.com/)
+- [GoogleTranslate Api(To translate the name and description of the product)](https://cloud.google.com/translate)
+- [Cloudinary Api(To store product photos)](https://cloudinary.com/)
+- [LiqPay(To pay for an order)](https://www.liqpay.ua/documentation/api/home)
+- [Microsoft.AspNetCore.Identity(For authentication and authorization)](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio)
+- [SignalR(For real-time message processing)](https://dotnet.microsoft.com/en-us/apps/aspnet/signalr)
+- [Google Authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-7.0)
+- [Facebook Authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins?view=aspnetcore-7.0)
+
+## Deploy и CI/CD
+
+## Contributing
+For help in development, please contact me via my e-mail. The subject for help can be a bug or suggestions for improving the code, adding new options for the development of the application.
+
+## Why was this project developed?
+The project was created for practical experience in writing full-fledged web applications. For learning new technologies and for implementing APIs that are interesting to me. This tutorial project helped me delve deeper into the back-end development process.
+
+## The project team
+- [Shokhov Dmytro](https://t.me/f_a_g_e) — Back-End Engineer
+
+## Sources
+In terms of design, the project was inspired by online stores: Asos, Zara, Mango. In terms of that, let me name an online store, it is only because it is very in demand, more and more people want to have their own business and therefore this is a niche in demand. Also, during development, you can encounter many interesting problems that need to be solved. 

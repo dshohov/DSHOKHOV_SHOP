@@ -1,0 +1,75 @@
+﻿@using shokhov_shop.Data.Enum
+@using shokhov_shop.ViewModels
+@model CreateOrEditProductViewModel
+
+
+<form asp-action="Edit" enctype="multipart/form-data" method="post">
+    <div>
+        Имя <input asp-for="Name_For_User"/><br />
+        Опис <input asp-for="Description" /><br />
+        Стать <select asp-for="People" asp-items="@Html.GetEnumSelectList<People>()">
+            <option>--Select--</option>
+        </select><br />
+        Головне фото вироба<input asp-for="Image" type="file"/><br />
+        Фото вироба 2<input asp-for="Image2" type="file"/><br />
+        Фото вироба 3<input asp-for="Image3" type="file"/><br />
+        Фото вироба 4<input asp-for="Image4" type="file"/><br />
+        Фото вироба 5<input asp-for="Image5" type="file"/><br />
+        Id категорії якоії належить <input asp-for="Category_id"/><br />
+        Ціна <input asp-for="Price" /><br />
+        Під категорія <input asp-for="Sub_category" /><br />
+         <label>
+                <input type="radio" id="option1" name="Sizes_Array" value="Один розмір" onclick="hideCheckboxes()" checked> Один розмір
+            </label>
+            <br>
+            <label>
+                <input type="radio" id="option2" name="option" value="option1" onclick="showCheckboxes()"> Обрати розміри
+            </label>
+            <br>
+        <div id="checkboxes" style="display:none;">
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="XXS"> XXS
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="XS"> XS
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="S"> S
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="M"> M
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="L"> L
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="XL"> XL
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="Sizes_Array" value="XXL"> XXL
+            </label>
+        </div>
+                  
+        <script>
+            
+            
+            function showCheckboxes() {
+                const option1 = document.getElementById("option1");
+                option1.checked = false;
+                document.getElementById("checkboxes").style.display = "block";
+            }          
+            function hideCheckboxes() {
+                const option2 = document.getElementById("option2");
+                option2.checked = false;
+                document.getElementById("checkboxes").style.display = "none";
+            }
+        </script>
+    </div>
+    <button type="submit">Sumbit</button>
+</form>

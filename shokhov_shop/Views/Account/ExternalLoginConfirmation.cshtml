@@ -1,0 +1,33 @@
+﻿@using shokhov_shop.ViewModels
+@model ExternalLoginViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+
+<link rel="stylesheet" href="~/css/login.css">
+<div class="main">  	
+    <input type="checkbox" id="chk" aria-hidden="true">    
+    <div class="signup">
+        <form asp-controller="Account" asp-action="ExternalLoginConfirmation" method="post" role="form" asp-route-returnurl="@ViewData["ReturnUrl"]">
+
+            <label for="chk" aria-hidden="true">@localizer["Логін"]</label>
+            <input asp-for="Email" readonly class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <label for="chk" aria-hidden="true">@localizer["Ім'я користувача"]</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <button class="but" type="submit">@localizer["Відправити"]</button>
+           
+        </form>
+        
+    </div>
+    <div class="login">
+        <form>
+            <label for="chk" aria-hidden="true"><a style="text-decoration:none" asp-controller="Category" asp-action="Woman">@localizer["На головну"]</a></label>
+            
+        </form>
+    </div>
+    @section Scripts{ 
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+
+</div>

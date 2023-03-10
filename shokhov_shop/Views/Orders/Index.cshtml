@@ -1,0 +1,60 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model Order
+<link rel="stylesheet" href="~/css/buy_form_css.css">
+<div class="row">
+                    <div class="col-75">
+                      <div class="container">
+                        <form asp-action="Buy" asp-controller="Orders">
+                          <div class="row">
+                            <div class="col-50">
+                              <h3>@localizer["Оформлення замовлення"]</h3>
+                              <label >@localizer["ПІБ повністю"]</label>
+                              <input type="text" asp-for="Full_Name"  placeholder="@localizer["Шевченко Тарас Григорович"]">
+                              <label>@localizer["Контактний телефонний номер"]</label>
+                              <input type="text" asp-for="@Model.Telefon" placeholder="+380986712487">
+                              <label>@localizer["Місто куди треба доставити"]</label>
+                              <input type="text" asp-for="City" placeholder="@localizer["Маріуполь"]">
+                              <label >@localizer["Номер відділення Нової Пошти"]</label>
+                              <input type="text" asp-for="Number_Post" placeholder="12">
+                              <label>@localizer["Коментар до замовлення"]</label>
+                              <textarea id="comment" asp-for="@Model.Comment" ></textarea>
+                              <button>@localizer["Замовити"]</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  
+                    <div class="col-25">
+                      <div class="container">
+                        <h4>@localizer["Ваша корзина"]</h4>
+                          <ul class="list_prod" id="style-1">
+                            @foreach(Set_Product item in Model.Set_Products)
+                            {
+                                <li>
+                                  <div>
+                                    <div class="tex">
+                                      <h5>@localizer[item.Name]</h5>
+                                    </div>
+                                    <div class="tex">
+                                      <h5>@localizer["Розмір"] @localizer[item.Set_Size]</h5>
+                                    </div>
+                                    <div class="tex">
+                                      <h5>Ціна: @item.Price</h5>
+                                    </div>
+                                    <div class="tex">
+                                        <a asp-action="Remove_Product" asp-controller="Orders" asp-route-id="@item.Id">@localizer["Видалити"]</a>
+                                    </div>
+                                  </div>
+                              
+                                  <img src="@item.Image" alt="">
+                                </li>
+                            }
+                            
+                           
+                          </ul>
+                        <hr>
+                        <p>@localizer["Сумма замовлення"]: <span class="price" style="color:black"><b>@Model.Total_Price @localizer["ГРН"].</b></span></p>
+                      </div>
+                    </div>
+                  </div>    

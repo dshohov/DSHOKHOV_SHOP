@@ -1,0 +1,15 @@
+﻿@using shokhov_shop.Data.Enum
+@using shokhov_shop.ViewModels
+@model CreateOrEditCategoryViewModel
+<form asp-action="Edit" enctype="multipart/form-data" method="post">
+
+    <div>
+        <input asp-for="Name_For_User"/>
+        <input asp-for="Description" />
+        <select asp-for="People" asp-items="@Html.GetEnumSelectList<People>()">
+            <option>--Select--</option>
+        </select>
+        <input asp-for="Image" type="file"/>
+    </div>
+    <button type="submit">Sumbit</button>
+</form>

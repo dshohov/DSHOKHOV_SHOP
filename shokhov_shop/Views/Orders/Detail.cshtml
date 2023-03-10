@@ -1,0 +1,59 @@
+﻿@model Order
+<link rel="stylesheet" href="~/css/buy_form_css.css">
+<div class="row">
+                    <div class="col-75">
+                      <div class="container">
+                        <form asp-action="Buy" asp-controller="Orders">
+                          <div class="row">
+                            <div class="col-50">
+                              <h3>Деталі замовлення</h3>
+                              <h3 class="my-3">Id замовлення: @Model.Id</h3>
+                              <h3 class="my-3">ПІБ замовника: @Model.Full_Name</h3>
+                              <h3 class="my-6">Телефоний номер: @Model.Telefon</h3>
+                              <h3 class="my-6">Місто одержувач: @Model.City</h3>
+                              <h3 class="my-6">Номер віділення "Нової Пошти": @Model.Number_Post</h3>
+                              <h3 class="my-6">Коментар Замовлення: @Model.Comment</h3>
+                              <h3 class="my-6">Фінальна ціна: @Model.Total_Price</h3>
+                              @if(Model.Confirmed_Admin == false)
+                                            {
+                                                <a asp-action="Confirmed_Admin" asp-route-id="@Model.Id" class="btn btn-info text-white">Підтвердити оплату</a>
+                                            }
+                                            @if(Model.Confirmed_Admin == true && Model.Completed == false){
+                                                <a asp-action="Completed" asp-route-id="@Model.Id" class="btn btn-info text-white">Підтвердити відправку</a>
+                                            }
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  
+                    <div class="col-25">
+                      <div class="container">
+                        <h4>Ваша корзина</h4>
+                          <ul class="list_prod" id="style-1">
+                            @foreach(Set_Product item in Model.Set_Products)
+                            {
+                                <li>
+                                  <div>
+                                    <div class="tex">
+                                      <h5>@item.Name</h5>
+                                    </div>
+                                    <div class="tex">
+                                      <h5>Розмір @item.Set_Size</h5>
+                                    </div>
+                                    <div class="tex">
+                                      <h5>Ціна: @item.Price</h5>
+                                    </div>
+                                  </div>
+                              
+                                  <img src="@item.Image" alt="">
+                                </li>
+                            }
+                            
+                           
+                          </ul>
+                        <hr>
+                        <p>Сумма замовлення: <span class="price" style="color:black"><b>@Model.Total_Price грн.</b></span></p>
+                      </div>
+                    </div>
+                  </div>    

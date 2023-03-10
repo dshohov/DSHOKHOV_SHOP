@@ -53,6 +53,11 @@ header::after{
     clear: both;
     content: '';
 }
+main::after {
+    display: block;
+    clear: both;
+    content: '';
+}
 header h1{
     font-family: 'Rubik', sans-serif;
     font-style: normal;
@@ -80,9 +85,9 @@ header li {
     position: absolute;
 }
 .nav_right{
+    float: right;
     display: inline-block;
-    position: absolute;
-    margin-left: 964px;
+    margin-right: 34px;
     margin-top: 25px;
 }
 .my_nav{
@@ -93,6 +98,44 @@ header li {
 
 #blockImg1{display:none;position:absolute;margin: 50px 0 0 1152px;}
 #click_img1,.click_img1{cursor:pointer;}
+
+.image-container {
+    position: relative;
+}
+
+.form-container {
+    display: none;
+    position: absolute;
+    top: 75%;
+    left: -50px;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+    .form-container form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+    }
+
+    .form-container input {
+        flex: 1;
+        margin-right: 10px;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        width: 100px;
+    }
+
+    .form-container button {
+        padding: 5px;
+        background-color: #fff;
+        color: #000;
+        border: inset, 1px;
+        border-color: #000;
+        border-radius: 5px;
+    }
 
 /* End basik header */
 

@@ -1,0 +1,29 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<Product>
+<link rel="stylesheet" href="/css/ofers_css.css">
+<!--Offers example-->
+<div class="context">
+    <div class="ofers_nav">
+        <h1>@ViewBag.Messege</h1>
+        <ul>
+            <li><a asp-action="Offers" asp-controller="Offers" asp-route-id="@Model.First().Category_id">@localizer["Усі"]</a></li>
+        </ul>
+    </div>
+    <div class="ofers">
+        <ul>
+            @foreach(Product item in Model)
+            {
+                <li>
+                    <div style="background-image: url(@item.Image)" class="holder">
+                        <div class="block">
+                            <a asp-route-id="@item.Id" asp-action="Index" asp-controller="Product">@localizer["Деталі"]</a>
+                        </div>
+                    </div>
+                    <h2>@localizer[item.Name_For_User]</h2>
+                    <h2>@item.Price ГРН.</h2>      
+                    <a asp-action="Edit" asp-controller="Offers" asp-route-id="@item.Id"><button>Edit</button></a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
