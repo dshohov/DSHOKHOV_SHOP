@@ -1,6 +1,6 @@
 # DSHOKHOV_SHOP
 Educational project to demonstrate my skills. The project is an online store of things for children, women and men. The project is still under development.
-
+Project link: https://shokhovshop20230309210347.azurewebsites.net/
 ## Content
 - [Technologies](#Technologies)
 - [Helpers](#Helpers)
